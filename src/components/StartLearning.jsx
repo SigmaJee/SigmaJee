@@ -24,12 +24,12 @@ const StartLearning = ({func}) => {
           ["Video lessons", "1M+", "https://cdn-icons-png.flaticon.com/512/4208/4208496.png"],
           ["Mins. watched", "3.2B+", "https://cdn-icons-png.flaticon.com/512/3595/3595455.png"]
         ].map(([title, value, img], i) => (
-          <div className="info-card" key={i}>
+          <div className={`info-card `} key={i}>
             <div className="info-text">
               <p className="info-title">{title}</p>
               <h3>{value}</h3>
             </div>
-            <img src={img} alt={title} />
+            <img src={img} className={`${i===1?"ab":"none"}`} alt={title} />
           </div>
         ))}
       </div>
