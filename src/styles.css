@@ -1003,7 +1003,7 @@ body {
 
 @media (max-width: 800px) {
    .custom-toast {
-    left: 32%;
+    left: 15%;
     transform: translateX(-50%);
     min-width: 240px;
     max-width: 90vw;
