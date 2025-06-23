@@ -19,6 +19,7 @@ const Login = ({ funcs, elements }) => {
     const email = useRef("");
     const [ischecked, setisChecked] = useState(false);
     const Password = useRef("");
+    const api=import.meta.env.VITE_API;
     const signup = () => {
         setisLogin(false);
         setisSignup(true);
@@ -38,7 +39,7 @@ const Login = ({ funcs, elements }) => {
             }, 2000);
             return;
         }
-        axios.post("/api/user/find-user", { Email: email }).then((res) => {
+        axios.post(`${api}/find-user`, { Email: email }).then((res) => {
             ShowPass(true);
             setDisable(true);
             return;
@@ -51,7 +52,7 @@ const Login = ({ funcs, elements }) => {
         })
     }
     const onsubmit = async () => {
-        await axios.post("/api/user/login", { email: email.current, pass: Password.current }).then((res) => {
+        await axios.post(`${api}/login`, { email: email.current, pass: Password.current }).then((res) => {
             setToast("Success");
             setType("success");
             navigate("/home", { replace: true });

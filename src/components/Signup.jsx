@@ -17,6 +17,7 @@ const Signup = ({ funcs, elements }) => {
     const [enable, setEnable] = useState(false);
     const [time, setTime] = useState(30);
     const actOtpRef = useRef("");
+    const api=import.meta.env.VITE_API
     const login = () => {
         setisLogin(true);
         setisSignup(false);
@@ -39,7 +40,7 @@ const Signup = ({ funcs, elements }) => {
             }, 3000);
             return;
         }
-        await axios.post("/api/user/signup", { Email: email }).then(async (res) => {
+        await axios.post(`${api}/signup`, { Email: email }).then(async (res) => {
             setshowOtp(true);
             setDisable(true);
             await SendOtp();
@@ -98,7 +99,7 @@ const Signup = ({ funcs, elements }) => {
                 return prev - 1;
             });
         }, 1000);
-        await axios.post("api/user/send-otp", { Email: email }).then((res) => {
+        await axios.post(`${api}/send-otp`, { Email: email }).then((res) => {
             console.log("Otp Sent ");
             actOtpRef.current = String(res.data.otp);
 

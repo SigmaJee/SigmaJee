@@ -14,6 +14,7 @@ const OtpVerification = ({ funcs, elements }) => {
     const [disable, setdisable] = useState(false);
     const [time, setTime] = useState(30);
     const [enable, setEnable] = useState(false);
+    const api=import.meta.env.VITE_API
     const Back = () => {
         setisLogin(true);
         setshowEmail(true);
@@ -36,7 +37,7 @@ const OtpVerification = ({ funcs, elements }) => {
             }, 3000);
             return;
         };
-        await axios.post("/api/user/find-user", { Email: email.current }).then(async (res) => {
+        await axios.post(`${api}/find-user`, { Email: email.current }).then(async (res) => {
             setshowOtp(true);
             setdisable(true);
             await sendOtp();
@@ -95,7 +96,7 @@ const OtpVerification = ({ funcs, elements }) => {
             })
 
         }, 1000);
-        await axios.post("/api/user/send-otp", { Email: email.current }).then((res) => {
+        await axios.post(`${api}/send-otp`, { Email: email.current }).then((res) => {
             console.log("Otp sent");
             actOtp.current = String(res.data.otp);
         }).catch(err => {
