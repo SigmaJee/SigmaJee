@@ -6,7 +6,7 @@ import axios from "axios";
 import validator from "validator"
 import { useNavigate } from "react-router-dom";
 const Hero = ({ elements }) => {
-  const api=import.meta.env.VITE_API;
+  const api = import.meta.env.VITE_API;
   const navigate = useNavigate();
   const [showOtp, setshowOtp] = useState(false);
   const [disable, setDisable] = useState(false);
@@ -53,7 +53,7 @@ const Hero = ({ elements }) => {
       return;
     }
 
-    await axios.post(`${api}/send-otp`, { Email: email }).then(async (res) => {
+    await axios.post(`${api}/signup`, { Email: email }).then(async (res) => {
       setshowOtp(true);
       setDisable(true);
       await Sendotp();
@@ -91,18 +91,29 @@ const Hero = ({ elements }) => {
 
 
   }
-  const onKeyDown = (e, index) => {
-    const key = e.key;
-    if (key === "LeftArrow" && index > 0) {
-      Otp.current[index - 1].focus();
-    }
-    if (key === "RighttArrow" && index < 5) {
-      Otp.current[index + 1].focus();
-    }
-    if (key === "Backspace" && index > 0 && Otp.current[index] === "") {
-      Otp.current[index - 1].focus();
+  const handleKeyDown = (e, index) => {
+  const key = e.key;
+
+  if (key === "ArrowLeft" && index > 0) {
+    Otp.current[index - 1].focus();
+  }
+
+  if (key === "ArrowRight" && index < 5) {
+    Otp.current[index + 1].focus();
+  }
+
+    if (key === "Backspace") {
+    if (Otp.current[index].value === "") {
+      if (index > 0) {
+        Otp.current[index - 1].focus();
+        Otp.current[index - 1].value = ""; // also clear the previous one
+      }
+    } else {
+      Otp.current[index].value = ""; // just clear current box
     }
   }
+};
+
   return (
     <section className="hero" data-aos="fade-up">
       <form className="hero-left" onSubmit={
@@ -138,7 +149,7 @@ const Hero = ({ elements }) => {
               pattern="[0-9]*"
               maxLength={1}
               ref={(el) => Otp.current[i] = el}
-              className="otp-input" onChange={(e) => handlechange(e, i)} onKeyDown={(e) => onKeyDown(e, i)} />
+              className="otp-input" onChange={(e) => handlechange(e, i)} onKeyDown={(e) => handleKeyDown(e, i)} />
           ))}
           <div className="login-link" style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }} onClick={() => { setDisable(false); setshowOtp(false); setEnable(false) }}>Change Email</div>
         </div>}
