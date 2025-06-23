@@ -951,8 +951,7 @@ body {
   position: fixed;
   top: 5vh;
   left: 35%;
-  transform: translateX(-50%);
-  z-index:100000000000000000000000;
+  z-index:100000000000000000;
   min-width: 300px;
   max-width: 90vw;
   padding: 16px 24px;
