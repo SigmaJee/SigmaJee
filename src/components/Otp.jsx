@@ -37,7 +37,6 @@ const OtpVerification = ({ funcs, elements }) => {
             return;
         };
         await axios.post("/api/user/find-user", { Email: email.current }).then(async (res) => {
-
             setshowOtp(true);
             setdisable(true);
             await sendOtp();
@@ -57,7 +56,7 @@ const OtpVerification = ({ funcs, elements }) => {
         }
         else {
             setToast("Incorrect OTP");
-            setType("success");
+            setType("error");
             setTimeout(() => {
                 setToast("");
             }, 3000);
@@ -83,14 +82,8 @@ const OtpVerification = ({ funcs, elements }) => {
         }
     }
     const sendOtp = async () => {
-        await axios.post("/api/user/send-otp", { Email: email.current }).then((res) => {
-            console.log("Otp sent");
-            actOtp.current = String(res.data.otp);
-        }).catch(err => {
-            console.log(err);
-        })
         setEnable(false);
-        setTime(28);
+        setTime(30);
         const timer = setInterval(() => {
             setTime(prev => {
                 if (prev <= 1) {
@@ -102,6 +95,14 @@ const OtpVerification = ({ funcs, elements }) => {
             })
 
         }, 1000);
+        await axios.post("/api/user/send-otp", { Email: email.current }).then((res) => {
+            console.log("Otp sent");
+            actOtp.current = String(res.data.otp);
+        }).catch(err => {
+            console.log(err);
+        })
+
+
     }
 
     return (

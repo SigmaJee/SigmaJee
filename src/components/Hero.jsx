@@ -12,7 +12,7 @@ const Hero = ({ elements }) => {
   const [emailErr, setEmailerr] = useState("");
   const { toast, type, onClose, setToast, setType } = elements;
   const [time, setTime] = useState(30);
-  const [enable,setEnable]=useState(false);
+  const [enable, setEnable] = useState(false);
   const actOtp = useRef("");
   const email = useRef("");
   const Otp = useRef([]);
@@ -29,7 +29,7 @@ const Hero = ({ elements }) => {
     }
     else {
       setToast("Incorrect Otp");
-      setType("success");
+      setType("error");
       setTimeout(() => {
         setToast("");
       }, 4000);
@@ -67,14 +67,8 @@ const Hero = ({ elements }) => {
     })
   }
   const Sendotp = async () => {
-    await axios.post("/api/user/send-otp", { Email: email.current }).then((res) => {
-      console.log("otp sent");
-      actOtp.current = String(res.data.otp);
-    }).catch(err => {
-      log("Otp not sent");
-    })
     setEnable(false);
-    setTime(28);
+    setTime(30);
     const timer = setInterval(() => {
       setTime(prev => {
         if (prev <= 1) {
@@ -86,6 +80,15 @@ const Hero = ({ elements }) => {
       })
 
     }, 1000);
+    await axios.post("/api/user/send-otp", { Email: email.current }).then((res) => {
+      console.log("otp sent");
+      actOtp.current = String(res.data.otp);
+    }).catch(err => {
+      log("Otp not sent");
+    })
+
+
+
   }
   const onKeyDown = (e, index) => {
     const key = e.key;
@@ -136,11 +139,11 @@ const Hero = ({ elements }) => {
               ref={(el) => Otp.current[i] = el}
               className="otp-input" onChange={(e) => handlechange(e, i)} onKeyDown={(e) => onKeyDown(e, i)} />
           ))}
-          <div className="login-link" style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>Change Email</div>
+          <div className="login-link" style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }} onClick={() => { setDisable(false); setshowOtp(false); setEnable(false) }}>Change Email</div>
         </div>}
         {enable ?
-          showOtp && <p className="login-link" onClick={Sendotp} style={{ textAlign: "center", marginBottom:"10px" }}>Resend Otp</p> :
-          showOtp && <p style={{ textAlign: "center", marginBottom:"10px"  }}>{`Resend otp in ${time}`}</p>
+          showOtp && <p className="login-link" onClick={Sendotp} style={{ textAlign: "center", marginBottom: "10px", width: "86%" }}>Resend Otp</p> :
+          showOtp && <p style={{ textAlign: "center", marginBottom: "10px", width: "86%" }}>{`Resend otp in ${time}`}</p>
         }
 
         {(!emailErr && !showOtp) && <p className="otp-note" style={{ textAlign: 'center', width: "87%" }}>We'll send an OTP for verification</p>}

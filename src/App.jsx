@@ -37,7 +37,7 @@ function App() {
           {Show && <Sidebar func={func} elements={elements} />}
           <Navbar func={func} />
           <Hero elements={elements} />
-          <ExamSection func={func} />
+          <ExamSection func={func} elements={elements} />
           <Features />
           <StartLearning func={func}/>
           <Footer />

@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import "../styles.css"
 import Toast from "../Toast/Toast";
-const ExamSection = ({ func }) => {
+const ExamSection = ({ func,elements }) => {
   const right = [0, 1, 4, 5];
   const { setShow } = func;
-  const [toast, setToast] = useState("");
-  const [type, setType] = useState("");
+  const { toast, type, onClose, setToast, setType }=elements;
   const open = () => {
     setShow(true);
     setToast("Login To Continue");
@@ -14,13 +13,9 @@ const ExamSection = ({ func }) => {
       setToast("");
     }, 4000);
   }
-  const onClose = () => {
-    setToast("");
-  }
-  const el = { toast, type, onClose };
   return (
     <>
-      {toast && <Toast elements={el} />}
+      {toast && <Toast elements={elements} />}
       <section className="exam-section">
         <h2 className="exam-heading">Select your goal / exam</h2>
         <p className="exam-subheading">

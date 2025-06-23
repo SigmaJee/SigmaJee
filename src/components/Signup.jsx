@@ -72,7 +72,6 @@ const Signup = ({ funcs, elements }) => {
             }, 4000);
         }
 
-
     }
     const handleKeyDown = (e, index) => {
         const key = e.key;
@@ -87,16 +86,7 @@ const Signup = ({ funcs, elements }) => {
         }
     }
     const SendOtp = async () => {
-
-        await axios.post("api/user/send-otp", { Email: email }).then((res) => {
-            console.log("Otp Sent ");
-            actOtpRef.current = String(res.data.otp);
-
-        }).catch(err => {
-            console.log(err.response.data.message);
-            console.log(err);
-        })
-        setTime(28);
+        setTime(30);
         setEnable(false);
         const timer = setInterval(() => {
             setTime((prev) => {
@@ -108,6 +98,16 @@ const Signup = ({ funcs, elements }) => {
                 return prev - 1;
             });
         }, 1000);
+        await axios.post("api/user/send-otp", { Email: email }).then((res) => {
+            console.log("Otp Sent ");
+            actOtpRef.current = String(res.data.otp);
+
+        }).catch(err => {
+            console.log(err.response.data.message);
+            console.log(err);
+        })
+
+
 
     }
     return (
@@ -144,12 +144,12 @@ const Signup = ({ funcs, elements }) => {
                                 maxLength={1}
                                 ref={(el) => otpRef.current[i] = el}
 
-                                className="otp-input" onChange={(e) => handlechange(e, i)} onKeyDown={(e) => 
+                                className="otp-input" onChange={(e) => handlechange(e, i)} onKeyDown={(e) =>
                                     handleKeyDown(e, i)} />
                         ))}
                     </div>}
                     {!enable
-                        ? (showOtp && <p  style={{ textAlign: "center" }}>{`Resend otp in ${time}`}</p>)
+                        ? (showOtp && <p style={{ textAlign: "center" }}>{`Resend otp in ${time}`}</p>)
                         : (showOtp && <p className="login-link" style={{ textAlign: "center" }} onClick={SendOtp}>Resend Otp</p>)
                     }
 

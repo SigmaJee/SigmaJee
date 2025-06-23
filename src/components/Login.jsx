@@ -72,7 +72,6 @@ const Login = ({ funcs, elements }) => {
 
     return (
         <>
-            {toast && <Toast elements={elements} />}
             <form
                 className="login-box"
                 data-aos="fade-down"
