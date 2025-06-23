@@ -120,13 +120,13 @@ const Login = ({ funcs, elements }) => {
                 <p className="or-line">or</p>
                 <div className="login-links">
                     {!Pass ? <>
-                        <a className="login-link" onClick={signup}>Signup</a>
+                        <span className="login-link" onClick={signup}>Signup</span>
                         <span className="link-separator">|</span>
-                        <a className="login-link" onClick={otp}>Continue with OTP</a>
+                        <span className="login-link" onClick={otp}>Continue with OTP</span>
                     </> : <>
-                        <a className="login-link" onClick={Makedefault}>Back </a>
+                        <span className="login-link" onClick={Makedefault}>Back </span>
                         <span className="link-separator">|</span>
-                        <a className="login-link" onClick={() => { setDisable(false); ShowPass(false) }}>Change Email</a>
+                        <span className="login-link" onClick={() => { setDisable(false); ShowPass(false) }}>Change Email</span>
 
                     </>}
                 </div>

@@ -35,7 +35,7 @@ const ExamSection = ({ func }) => {
 
         <div className="exam-cards">
           {[
-            ["UPSC CSE - GS", "https://cdn-icons-png.flaticon.com/512/3895/3895653.png"],
+            ["UPSC CSE - GS", "https://cdn-icons-png.flaticon.com/512/3372/3372890.png"],
             ["IIT JEE", "https://cdn-icons-png.flaticon.com/512/2721/2721297.png"],
             ["NEET UG", "https://cdn-icons-png.flaticon.com/512/928/928731.png"],
             ["Bank exams", "https://cdn-icons-png.flaticon.com/512/944/944719.png"],

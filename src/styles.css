@@ -494,12 +494,14 @@ body {
   cursor: pointer;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 800px) {
   * {
     box-sizing: border-box;
   }
 
+
   .navbar {
+
     flex-direction: row;
     justify-content: space-between;
     padding: 16px 16px;
@@ -797,7 +799,7 @@ body {
   }
 }
 
-@media (min-width: 500px) {
+@media (min-width: 800px) {
   .sidebar-overlay {
     height: 100vh;
     width: 64vw;
@@ -808,7 +810,9 @@ body {
     opacity: 0.3;
     background-color: #ffffff;
   }
-
+  .navbar{
+    gap: 50vw;
+  }
   .side-bar {
     position: fixed;
     top: 0;
@@ -978,4 +982,136 @@ body {
   font-size: 18px;
   margin-left: 20px;
   cursor: pointer;
+}
+@media (max-width: 800px) {
+  .side-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 40vh;
+    background-color: #eceeed;
+    z-index: 100000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeUpMobile 0.5s ease-out forwards;
+    /* Initial hidden state before animation */
+    transform: translateY(100%);
+    opacity: 0;
+  }
+ 
+  @keyframes fadeUpMobile {
+    to {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+  }
+  @keyframes fadedownMobile {
+    to {
+      transform: translateY(-100%);
+      opacity: 1;
+    }
+  }
+
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 9999999;
+  }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .side-bar{
+    height: 60vh;
+  }
+  .login-box {
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .login-heading {
+    font-size: 20px;
+    text-align: center;
+    color: #2d2f31;
+  }
+
+  .login-input,
+  .login-button,
+  .alt-button {
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .otp-boxes {
+    gap: 6px;
+  }
+  .otp-boxes {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+  }
+   .or-line {
+    text-align: center;
+    color: #555;
+    font-size: 14px;
+  }.login-heading {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2d2f31;
+    text-align: center;
+  }
+  
+  .login-link {
+    color: #0b6fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  .login-links{
+    display: flex;
+    justify-content: center;
+  }
+  .otp-input {
+    width: 36px;
+    height: 40px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-link:hover {
+    text-decoration: underline;
+  }
+
+  .link-separator {
+    margin: 0 5px;
+    color: #888;
+  }
 }

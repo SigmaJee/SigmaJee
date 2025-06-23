@@ -143,7 +143,9 @@ const Signup = ({ funcs, elements }) => {
                                 pattern="[0-9]*"
                                 maxLength={1}
                                 ref={(el) => otpRef.current[i] = el}
-                                className="otp-input" onChange={(e) => handlechange(e, i)} onKeyDown={(e) => handleKeyDown(e, i)} />
+
+                                className="otp-input" onChange={(e) => handlechange(e, i)} onKeyDown={(e) => 
+                                    handleKeyDown(e, i)} />
                         ))}
                     </div>}
                     {!enable
@@ -154,8 +156,8 @@ const Signup = ({ funcs, elements }) => {
                     <button className="login-button" type="submit">{!showOtp ? "Verify Email" : "Submit Otp"}</button>
                     <p className="or-line">Already have an account?</p>
                     <div className="login-links">
-                        <a href="#" className="login-link" onClick={login}>Login</a>
-                        {disable && <a className="login-link" onClick={() => { setDisable(false); setshowOtp(false) }}>Change Email</a>}
+                        <div href="#" className="login-link" onClick={login}>Login</div>
+                        {disable && <div className="login-link" onClick={() => { setDisable(false); setshowOtp(false) }}>Change Email</div>}
                     </div>
                 </form>
             </div>

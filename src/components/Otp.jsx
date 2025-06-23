@@ -145,8 +145,8 @@ const OtpVerification = ({ funcs, elements }) => {
                     }
                     <button type="submit" className="login-button" >{(showEmail && !showOtp) ? "Verify" : "Submit"}</button>
                     <div className="login-links" style={{ marginTop: "10px" }}>
-                        <a href="#" className="login-link" onClick={Back}>Back</a>
-                        <a href="#" className="login-link" onClick={() => { setdisable(false), showOtp(false) }}>Change Email</a>
+                        <div href="#" className="login-link" onClick={Back}>Back</div>
+                        <div href="#" className="login-link" onClick={() => { setdisable(false), showOtp(false) }}>Change Email</div>
                     </div>
                 </form>
             </div>
