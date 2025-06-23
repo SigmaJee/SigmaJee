@@ -1,0 +1,161 @@
+import React from "react";
+import "../styles.css"
+import { useState } from "react";
+import { useRef } from "react";
+import axios from "axios";
+import validator from "validator"
+import { useNavigate } from "react-router-dom";
+const Hero = ({ elements }) => {
+  const navigate = useNavigate();
+  const [showOtp, setshowOtp] = useState(false);
+  const [disable, setDisable] = useState(false);
+  const [emailErr, setEmailerr] = useState("");
+  const { toast, type, onClose, setToast, setType } = elements;
+  const [time, setTime] = useState(30);
+  const [enable,setEnable]=useState(false);
+  const actOtp = useRef("");
+  const email = useRef("");
+  const Otp = useRef([]);
+  const handlechange = (e, index) => {
+    if (Otp.current[index] !== "" && index < 5) {
+      Otp.current[index + 1].focus();
+    }
+  }
+  const onSubmit = () => {
+    const finOtp = Otp.current.map((input) => input.value).join("");
+    if (finOtp === actOtp.current) {
+      navigate("/home", { replace: true });
+      return;
+    }
+    else {
+      setToast("Incorrect Otp");
+      setType("success");
+      setTimeout(() => {
+        setToast("");
+      }, 4000);
+      return;
+    }
+  }
+  const ValidateEmail = async (email) => {
+    if (email === "") {
+      setEmailerr("Email cannot be empty");
+      setTimeout(() => {
+        setEmailerr("");
+      }, 3000);
+      return;
+    }
+    if (!validator.isEmail(email)) {
+      setEmailerr("Enter a valid Email");
+      setTimeout(() => {
+        setEmailerr("");
+      }, 3000);
+      return;
+    }
+
+    await axios.post("/api/user/signup", { Email: email }).then(async (res) => {
+      setshowOtp(true);
+      setDisable(true);
+      await Sendotp();
+
+    }).catch((err) => {
+      console.log(err);
+      setEmailerr(err.response.data.message + " Go to Login");
+      setTimeout(() => {
+        setEmailerr("");
+      }, 3000);
+
+    })
+  }
+  const Sendotp = async () => {
+    await axios.post("/api/user/send-otp", { Email: email.current }).then((res) => {
+      console.log("otp sent");
+      actOtp.current = String(res.data.otp);
+    }).catch(err => {
+      log("Otp not sent");
+    })
+    setEnable(false);
+    setTime(28);
+    const timer = setInterval(() => {
+      setTime(prev => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          setEnable(true);
+          return;
+        }
+        return prev - 1;
+      })
+
+    }, 1000);
+  }
+  const onKeyDown = (e, index) => {
+    const key = e.key;
+    if (key === "LeftArrow" && index > 0) {
+      Otp.current[index - 1].focus();
+    }
+    if (key === "RighttArrow" && index < 5) {
+      Otp.current[index + 1].focus();
+    }
+    if (key === "Backspace" && index > 0 && Otp.current[index] === "") {
+      Otp.current[index - 1].focus();
+    }
+  }
+  return (
+    <section className="hero" data-aos="fade-up">
+      <form className="hero-left" onSubmit={
+        (e) => {
+          e.preventDefault();
+          if (!showOtp) {
+            ValidateEmail(email.current);
+          } else {
+            onSubmit(email.current);
+          }
+        }
+      } >
+        <h1 className="hero-heading">Crack your goal with<br />India's top educators</h1>
+        <p className="hero-subtext">
+          Over <span className="highlight">10 crore</span> learners trust us for their preparation
+        </p>
+        {showOtp && <p style={{ textAlign: "center", marginBottom: "10px", width: "87%", textDecoration: "bold" }}>Enter the otp sent on your Email</p>}
+        <div className="phone-input" style={{ border: `1px solid ${emailErr ? "red" : "black"}` }}>
+          <span className="country-code">Email</span>
+          <input type="text" placeholder="abc@example.com"
+            disabled={disable}
+            onChange={(e) => {
+              email.current = e.target.value;
+            }}
+
+          />
+        </div>
+        {emailErr && <p data-aos="fade-right" style={{ textAlign: 'start', color: "red", marginBottom: "17px" }}>{emailErr}</p>}
+        {showOtp && <div className=" interface-otp" data-aos="fade-down">
+          {[...Array(6)].map((_, i) => (
+            <input key={i} type="text"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              maxLength={1}
+              ref={(el) => Otp.current[i] = el}
+              className="otp-input" onChange={(e) => handlechange(e, i)} onKeyDown={(e) => onKeyDown(e, i)} />
+          ))}
+          <div className="login-link" style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>Change Email</div>
+        </div>}
+        {enable ?
+          showOtp && <p className="login-link" onClick={Sendotp} style={{ textAlign: "center", marginBottom:"10px" }}>Resend Otp</p> :
+          showOtp && <p style={{ textAlign: "center", marginBottom:"10px"  }}>{`Resend otp in ${time}`}</p>
+        }
+
+        {(!emailErr && !showOtp) && <p className="otp-note" style={{ textAlign: 'center', width: "87%" }}>We'll send an OTP for verification</p>}
+        <button className="cta-btn">{showOtp ? `Submit Otp` : `Join for free`}</button>
+      </form>
+      <div className="hero-right">
+        <div className="circle-images">
+          <img src="https://cdn-icons-png.flaticon.com/512/4140/4140037.png" alt="Student 1" />
+          <img src="https://cdn-icons-png.flaticon.com/512/4140/4140051.png" alt="Student 2" />
+          <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" alt="Student 3" />
+          <img src="https://cdn-icons-png.flaticon.com/512/4140/4140036.png" alt="Student 4" />
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
