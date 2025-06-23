@@ -14,9 +14,10 @@ body {
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 50vw;
+  justify-content:space-around;
   padding: 20px 40px;
+  width: 100vw;
+  
   border-bottom: 1px solid #eee;
 }
 
@@ -244,6 +245,7 @@ body {
   padding: 60px 40px;
   flex-wrap: wrap;
   text-align: center;
+
 }
 
 .learning-left {
@@ -833,6 +835,10 @@ body {
     justify-content: center;
     gap: 10px;
     margin: 20px 0;
+  }
+  .features-section{
+    margin-top: 100px;
+    gap: 60px;
   }
   .interface-otp{
     display: flex;
