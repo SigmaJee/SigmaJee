@@ -58,7 +58,7 @@ const OtpVerification = ({ funcs, elements }) => {
                 setloading(false);
                  navigate("/home", { replace: true });
             }, 2000);
-           
+            sessionStorage.setItem("email",email.current);
         }
         else {
             setToast("Incorrect OTP");

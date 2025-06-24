@@ -41,7 +41,7 @@ function App() {
       {loading&&<Loading/>}
       <Routes>
           <Route path="/signup-form" element={
-             <SignupPage/>
+             <SignupPage elements={elements}/>
           }/>
         <Route path="/" element={<>
           {Show && <Sidebar func={func} elements={elements} />}

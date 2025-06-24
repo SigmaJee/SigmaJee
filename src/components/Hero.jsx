@@ -31,7 +31,8 @@ const Hero = ({ elements, funcs }) => {
         setTimeout(() => {
           setloading(false);
           navigate("/signup-form", { replace: true });
-        }, 2000);
+        }, 3000);
+         sessionStorage.setItem("email",email.current);
     
       return;
   }
@@ -42,7 +43,7 @@ const Hero = ({ elements, funcs }) => {
 
       setTimeout(() => {
         setToast("");
-      }, 4000);
+      }, 3000);
       return;
     }
   }

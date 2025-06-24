@@ -67,15 +67,15 @@ const Signup = ({ funcs, elements }) => {
             setTimeout(() => {
                 setloading(false);
                 navigate("/signup-form", { replace: true });
-            }, 5000);
-
+            }, 3000);
+             sessionStorage.setItem("email",email);
         }
         else {
             setToast("Incorrect Otp");
             setType("error");
             setTimeout(() => {
                 setToast("");
-            }, 4000);
+            }, 3000);
         }
 
     }

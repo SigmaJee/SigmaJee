@@ -1,12 +1,14 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import './SignupPage.css';
-import { useForm } from 'react-hook-form';
-import AOS from "aos";
+import { set, useForm } from 'react-hook-form';
 import 'aos/dist/aos.css';
-
-const SignupPage = () => {
+import { NavLink, replace, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+const SignupPage = ({elements}) => {
+    const navigate=useNavigate();
     const passRef = useRef("");
+    const {setloading}=elements;
     const [show, setshow] = useState(false);
     const { register, handleSubmit, formState: { errors }, reset, clearErrors } = useForm();
 
@@ -29,12 +31,29 @@ const SignupPage = () => {
         const regex = /^[1-9][0-9]?$/;
         return regex.test(Class) || "Enter valid class (1-99)";
     }
+    const api=import.meta.env.VITE_URI;
+    const onSubmit = async (data) => {
+        const email = sessionStorage.getItem("email");
+        await axios.post(`${api}/create-user`,{Email:email,Name:data.Name,Class:data.Class,Password:data.Pass}).then((res)=>{
+             setloading(true);
+             setTimeout(() => {
+                setloading(false);
+                navigate("/home",{replace:true});
+             }, 3000);
 
-    const onSubmit = (data) => {
-        console.log(data);
-        reset();
+        }).catch((Err)=>{
+            console.log(Err);
+        })
     }
-
+   const onBack=async ()=>{
+     const email = sessionStorage.getItem("email");
+     await axios.post(`${api}/delete-user`,{Email:email}).then((res)=>{
+        navigate("/",{replace:true});
+     }).catch((err)=>{
+        console.log("Err in back");
+        
+     })
+   }
     return (
         <div className="signup-page-container">
             <div className="left-section">
@@ -107,7 +126,7 @@ const SignupPage = () => {
                     </form>
 
                     <p className="login-text">
-                        Already have an account? <span className="login-link">Login</span>
+                        Already have an account? <span className="login-link" onClick={onBack}>Login</span>
                     </p>
                 </div>
             </div>

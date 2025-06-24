@@ -59,7 +59,8 @@ const Login = ({ funcs, elements }) => {
             setTimeout(() => {
                 setloading(false);
                 navigate("/home", { replace: true });
-            }, 2000);
+            }, 3000);
+             sessionStorage.setItem("email",email.current);
             
         }).catch((err) => {
             setPasserr(err.response.data.message);
