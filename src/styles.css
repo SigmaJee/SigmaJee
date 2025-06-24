@@ -521,10 +521,13 @@ body {
 
   .login-btn,
   .join-btn {
-    width: 55px;
+    width: 50px;
     height: 40px;
     font-size: 10px;
     white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0;
   }
   .join-btn{
