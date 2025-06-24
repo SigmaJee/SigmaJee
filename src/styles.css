@@ -513,7 +513,7 @@ body {
   
   }
   .logo-highlight{
-    font-size: 25px;
+    font-size: 21px;
   }
   .navbar-buttons {
     gap: 10px;
@@ -521,7 +521,7 @@ body {
 
   .login-btn,
   .join-btn {
-    width: 70px;
+    width: 55px;
     height: 40px;
     font-size: 10px;
     white-space: nowrap;
@@ -534,7 +534,7 @@ body {
 
   .logo-highlight{
     position: relative;
-    right: 40px;
+    right: 35px;
   }
   .hero {
     flex-direction: column;

@@ -15,7 +15,7 @@ const Navbar = ({ func ,funcs}) => {
       </div>
       <div className="navbar-buttons ">
         <button className="login-btn" onClick={Open}>Log in</button>
-        <button className="join-btn" onClick={Open}>Join for free</button>
+        <button className="join-btn" onClick={Open}>Join Free</button>
       </div>
     </header>
   );
