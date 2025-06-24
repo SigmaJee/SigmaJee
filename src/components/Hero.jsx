@@ -151,7 +151,7 @@ const Hero = ({ elements }) => {
               ref={(el) => Otp.current[i] = el}
               className="otp-input" onChange={(e) => handlechange(e, i)} onKeyDown={(e) => handleKeyDown(e, i)} />
           ))}
-          <div className="login-link" style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }} onClick={() => { setDisable(false); setshowOtp(false); setEnable(false) }}>Change Email</div>
+          <div className="login-link abcd" style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }} onClick={() => { setDisable(false); setshowOtp(false); setEnable(false) }}>Change Email</div>
         </div>}
         {enable ?
           showOtp && <p className="login-link" onClick={Sendotp} style={{ textAlign: "center", marginBottom: "10px", width: "86%" }}>Resend Otp</p> :
