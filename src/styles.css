@@ -521,10 +521,9 @@ body {
 
   .login-btn,
   .join-btn {
-    width: 40px;
-    height: 40px;
+    height: 35px;
     font-size: 10px;
-    padding: 3px;
+    padding: 5px;
     white-space: nowrap;
     display: flex;
     justify-content: center;
