@@ -110,7 +110,7 @@
 @media (max-width: 768px) {
   .signup-page-container {
     flex-direction: column;
-    height: 110vh;
+    height: 100vh;
     min-height: 100vh;
     padding: 20px 0;
     overflow: auto;

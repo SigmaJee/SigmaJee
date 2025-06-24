@@ -532,6 +532,10 @@ body {
     height: 40px;
   }
 
+  .logo-highlight{
+    position: relative;
+    right: 40px;
+  }
   .hero {
     flex-direction: column;
     padding: 20px 10px;

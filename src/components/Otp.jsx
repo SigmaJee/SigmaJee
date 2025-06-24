@@ -113,7 +113,6 @@ const OtpVerification = ({ funcs, elements }) => {
 
     return (
         <>
-            {toast !== "" && <Toast elements={elements} />}
             <div className="side-bar" >
 
                 <form className="login-box" data-aos="fade-down" onSubmit={(e) => {
