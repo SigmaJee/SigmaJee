@@ -531,10 +531,6 @@ body {
     align-items: center;
     margin: 0;
   }
-  .join-btn{
-    width: 120px;
-    height: 40px;
-  }
 
   .logo-highlight{
     position: relative;
