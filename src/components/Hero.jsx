@@ -142,7 +142,7 @@ const Hero = ({ elements }) => {
           />
         </div>
         {emailErr && <p data-aos="fade-right" style={{ textAlign: 'start', color: "red", marginBottom: "17px" }}>{emailErr}</p>}
-        {showOtp && <div className=" interface-otp" data-aos="fade-down">
+        {showOtp && <div className=" interface-otp abc" data-aos="fade-down">
           {[...Array(6)].map((_, i) => (
             <input key={i} type="text"
               inputMode="numeric"

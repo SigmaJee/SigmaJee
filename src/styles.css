@@ -859,6 +859,10 @@ body {
     margin: 20px 0;
 
   }
+
+
+
+
   .otp-input {
     width: 40px;
     height: 45px;
@@ -1090,11 +1094,6 @@ body {
   gap: 10px;
   margin: 20px 0;
 }
-.abcd{
-  width: 10px;
-  margin-left: 0;
-}
-
 .otp-input {
   width: 36px;
   height: 40px;
@@ -1109,16 +1108,15 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  width: 65%;
+  width: 100%;
 }
 
 .interface-otp {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  gap: 10px;
   margin-top: 10px;
-  width: 90%;
-  margin-left: 5%;
 }
 
 .change-email-link {
@@ -1148,7 +1146,6 @@ body {
     justify-content: center;
     gap: 10px;
     margin: 20px 0;
-    width: 10%;
   }
    .or-line {
     text-align: center;
@@ -1160,13 +1157,17 @@ body {
     color: #2d2f31;
     text-align: center;
   }
+  .abc{
+    position: relative;
+    left: 5%;
+  }
   
   .login-link {
     color: #0b6fff;
     text-decoration: none;
     font-weight: 500;
+    margin: 0 5px;
     cursor: pointer;
-    width: 35%;
   }
   .login-links{
     display: flex;
