@@ -11,7 +11,7 @@ const Navbar = ({ func ,funcs}) => {
   return (
     <header className="navbar">
       <div className="logo">
-       <div className="logo-highlight"> Sigma JEE</div>
+       <div className="logo-highlight"> SigmaJEE</div>
       </div>
       <div className="navbar-buttons ">
         <button className="login-btn" onClick={Open}>Log in</button>
