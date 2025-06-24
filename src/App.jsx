@@ -14,6 +14,7 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from "./Home/HomePage.jsx";
 import Loading from "./Loading/loading.jsx";
 import SignupPage from "./SignupForm/SignupForm.jsx";
+import { useAuth } from "./LoginContext/loginContext.jsx";
 function App() {
 
   useEffect(() => {
@@ -25,36 +26,53 @@ function App() {
   const [toast, setToast] = useState("");
   const [type, setType] = useState("");
   const [Show, setShow] = useState(false);
-  const [Box,ShowBox]=useState(false);
+  const [Box, ShowBox] = useState(false);
   const [disable, setDisable] = useState(false);
-  const func = { Show,setShow };
-  const funcs={Box,ShowBox,disable,setDisable};
-  const [loading,setloading]=useState(false);
-
+  const func = { Show, setShow };
+  const funcs = { Box, ShowBox, disable, setDisable };
+  const [loading, setloading] = useState(false);
+  const { user } = useAuth();
   const onClose = () => {
     setToast("");
   }
-  const elements = { toast, type, onClose, setToast, setType,setloading };
+  const elements = { toast, type, onClose, setToast, setType, setloading };
   return (
     <>
       {toast && <Toast elements={elements} />}
-      {loading&&<Loading/>}
+      {loading && <Loading />}
       <Routes>
-          <Route path="/signup-form" element={
-             <SignupPage elements={elements}/>
-          }/>
+        <Route path="/signup-form" element={
+          user ? <SignupPage elements={elements} /> :
+            <>
+              {Show && <Sidebar func={func} elements={elements} />}
+              <Navbar func={func} funcs={funcs} />
+              <Hero elements={elements} funcs={funcs} />
+              <ExamSection func={func} elements={elements} funcs={funcs} />
+              <Features />
+              <StartLearning func={func} funcs={funcs} />
+              <Footer />
+            </>
+        } />
         <Route path="/" element={<>
           {Show && <Sidebar func={func} elements={elements} />}
           <Navbar func={func} funcs={funcs} />
-          <Hero elements={elements} funcs={funcs}  />
+          <Hero elements={elements} funcs={funcs} />
           <ExamSection func={func} elements={elements} funcs={funcs} />
           <Features />
-          <StartLearning func={func} funcs={funcs}/>
+          <StartLearning func={func} funcs={funcs} />
           <Footer />
         </>} />
-        <Route path="/home" element={<HomePage/>}/>
+        <Route path="/home" element={user?<HomePage />:<>
+          {Show && <Sidebar func={func} elements={elements} />}
+          <Navbar func={func} funcs={funcs} />
+          <Hero elements={elements} funcs={funcs} />
+          <ExamSection func={func} elements={elements} funcs={funcs} />
+          <Features />
+          <StartLearning func={func} funcs={funcs} />
+          <Footer />
+        </>} />
       </Routes>
-     
+
 
 
     </>

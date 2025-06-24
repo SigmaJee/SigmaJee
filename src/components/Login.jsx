@@ -7,6 +7,7 @@ import validator from "validator";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
+import { useAuth } from '../LoginContext/loginContext';
 const Login = ({ funcs, elements }) => {
     const navigate = useNavigate();
     const { setisSignup, setisLogin } = funcs;
@@ -19,6 +20,7 @@ const Login = ({ funcs, elements }) => {
     const email = useRef("");
     const [ischecked, setisChecked] = useState(false);
     const Password = useRef("");
+    const { setUser } = useAuth();
     const api=import.meta.env.VITE_API;
     const signup = () => {
         setisLogin(false);
@@ -56,6 +58,7 @@ const Login = ({ funcs, elements }) => {
             setToast("Success");
             setType("success");
             setloading(true);
+            setUser(true);
             setTimeout(() => {
                 setloading(false);
                 navigate("/home", { replace: true });

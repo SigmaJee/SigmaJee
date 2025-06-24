@@ -5,6 +5,7 @@ import { useRef } from "react";
 import axios from "axios";
 import validator from "validator"
 import { useNavigate } from "react-router-dom";
+import { useAuth } from '../LoginContext/loginContext';
 const Hero = ({ elements, funcs }) => {
   const api = import.meta.env.VITE_API;
   const navigate = useNavigate();
@@ -13,9 +14,11 @@ const Hero = ({ elements, funcs }) => {
   const { toast, type, onClose, setToast, setType, setloading } = elements;
   const [time, setTime] = useState(30);
   const [enable, setEnable] = useState(false);
+  const { setUser } = useAuth();
   const actOtp = useRef("");
   const email = useRef("");
   const Otp = useRef([]);
+  
   const handlechange = (e, index) => {
     if (Otp.current[index] !== "" && index < 5) {
       Otp.current[index + 1].focus();
@@ -25,9 +28,6 @@ const Hero = ({ elements, funcs }) => {
     const finOtp = Otp.current.map((input) => input.value).join("");
     if (finOtp === actOtp.current) {
       setloading(true);
-
-      // This guarantees React re-render first
-      
         setTimeout(() => {
           setloading(false);
           navigate("/signup-form", { replace: true });

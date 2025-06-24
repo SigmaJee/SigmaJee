@@ -5,10 +5,12 @@ import { set, useForm } from 'react-hook-form';
 import 'aos/dist/aos.css';
 import { NavLink, replace, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-const SignupPage = ({elements}) => {
-    const navigate=useNavigate();
+import { useAuth } from '../LoginContext/loginContext';
+const SignupPage = ({ elements }) => {
+    const navigate = useNavigate();
     const passRef = useRef("");
-    const {setloading}=elements;
+    const { setloading } = elements;
+    const { setUser } = useAuth();
     const [show, setshow] = useState(false);
     const { register, handleSubmit, formState: { errors }, reset, clearErrors } = useForm();
 
@@ -31,32 +33,33 @@ const SignupPage = ({elements}) => {
         const regex = /^[1-9][0-2]?$/;
         return regex.test(Class) || "Enter valid class (1-12)";
     }
-    const api=import.meta.env.VITE_API;
+    const api = import.meta.env.VITE_API;
     const onSubmit = async (data) => {
         const email = sessionStorage.getItem("email");
-        
-        await axios.post(`${api}/create-user`,{Email:email,Name:data.Name,Class:data.Class,Password:data.Pass}).then((res)=>{
-             setloading(true);
-             setTimeout(() => {
+
+        await axios.post(`${api}/create-user`, { Email: email, Name: data.Name, Class: data.Class, Password: data.Pass }).then((res) => {
+            setloading(true);
+            setTimeout(() => {
                 setloading(false);
                 reset();
-                navigate("/home",{replace:true});
-             }, 3000);
+                setUser(true);
+                navigate("/home", { replace: true });
+            }, 3000);
 
-        }).catch((Err)=>{
+        }).catch((Err) => {
             console.log(Err);
         })
     }
-   const onBack=async ()=>{
-     const email = sessionStorage.getItem("email");
-     await axios.post(`${api}/delete-user`,{Email:email}).then((res)=>{
-        sessionStorage.removeItem("email");
-        navigate("/",{replace:true});
-     }).catch((err)=>{
-        console.log("Err in back");
-        
-     })
-   }
+    const onBack = async () => {
+        const email = sessionStorage.getItem("email");
+        await axios.post(`${api}/delete-user`, { Email: email }).then((res) => {
+            sessionStorage.removeItem("email");
+            setUser(false);
+            navigate("/", { replace: true });
+        }).catch((err) => {
+            console.log("Err in back");
+        })
+    }
     return (
         <div className="signup-page-container">
             <div className="left-section">
@@ -113,7 +116,7 @@ const SignupPage = ({elements}) => {
                                 {errors.CPass.message}
                             </span>
                         }
-                        <label style={{ display: "flex", alignItems: "center", gap: "8px", whiteSpace: "nowrap", height:"20px",width:"20px" }}>
+                        <label style={{ display: "flex", alignItems: "center", gap: "8px", whiteSpace: "nowrap", height: "20px", width: "20px" }}>
                             <input
                                 type="checkbox"
                                 style={{ margin: 0 }}

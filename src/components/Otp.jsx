@@ -4,6 +4,7 @@ import Toast from "../Toast/Toast";
 import axios from "axios";
 import validator from "validator"
 import { useNavigate } from "react-router-dom";
+import { useAuth } from '../LoginContext/loginContext';
 const OtpVerification = ({ funcs, elements }) => {
     const navigate = useNavigate();
     const { setisLogin, setshowEmail, showEmail, showOtp, setshowOtp } = funcs;
@@ -14,6 +15,7 @@ const OtpVerification = ({ funcs, elements }) => {
     const [disable, setdisable] = useState(false);
     const [time, setTime] = useState(30);
     const [enable, setEnable] = useState(false);
+    const { setUser } = useAuth();
     const api=import.meta.env.VITE_API
     const Back = () => {
         setisLogin(true);
@@ -54,6 +56,7 @@ const OtpVerification = ({ funcs, elements }) => {
         const finOtp = otpRef.current.map((input) => input.value).join("");
         if (finOtp === actOtp.current) {
             setloading(true);
+             setUser(true);
             setTimeout(() => {
                 setloading(false);
                  navigate("/home", { replace: true });
