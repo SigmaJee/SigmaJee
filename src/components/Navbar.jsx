@@ -1,9 +1,12 @@
 import React from "react";
 import "../styles.css"
-const Navbar = ({ func }) => {
+const Navbar = ({ func ,funcs}) => {
   const { setShow } = func;
+  const {ShowBox,setDisable}=funcs;
   const Open = () => {
     setShow(true);
+    ShowBox(false);
+    setDisable(false);
   }
   return (
     <header className="navbar">

@@ -24,7 +24,11 @@ function App() {
   const [toast, setToast] = useState("");
   const [type, setType] = useState("");
   const [Show, setShow] = useState(false);
-  const func = { setShow };
+  const [Box,ShowBox]=useState(false);
+  const [disable, setDisable] = useState(false);
+  const func = { Show,setShow };
+  const funcs={Box,ShowBox,disable,setDisable};
+
   const onClose = () => {
     setToast("");
   }
@@ -35,9 +39,9 @@ function App() {
       <Routes>
         <Route path="/" element={<>
           {Show && <Sidebar func={func} elements={elements} />}
-          <Navbar func={func} />
-          <Hero elements={elements} />
-          <ExamSection func={func} elements={elements} />
+          <Navbar func={func} funcs={funcs} />
+          <Hero elements={elements} funcs={funcs}  />
+          <ExamSection func={func} elements={elements} funcs={funcs} />
           <Features />
           <StartLearning func={func}/>
           <Footer />

@@ -5,11 +5,10 @@ import { useRef } from "react";
 import axios from "axios";
 import validator from "validator"
 import { useNavigate } from "react-router-dom";
-const Hero = ({ elements }) => {
+const Hero = ({ elements,funcs }) => {
   const api = import.meta.env.VITE_API;
   const navigate = useNavigate();
-  const [showOtp, setshowOtp] = useState(false);
-  const [disable, setDisable] = useState(false);
+  const {Box,ShowBox,disable,setDisable}=funcs
   const [emailErr, setEmailerr] = useState("");
   const { toast, type, onClose, setToast, setType } = elements;
   const [time, setTime] = useState(30);
@@ -54,7 +53,7 @@ const Hero = ({ elements }) => {
     }
 
     await axios.post(`${api}/signup`, { Email: email }).then(async (res) => {
-      setshowOtp(true);
+      ShowBox(true);
       setDisable(true);
       await Sendotp();
 
@@ -119,7 +118,7 @@ const Hero = ({ elements }) => {
       <form className="hero-left" onSubmit={
         (e) => {
           e.preventDefault();
-          if (!showOtp) {
+          if (!Box) {
             ValidateEmail(email.current);
           } else {
             onSubmit(email.current);
@@ -130,7 +129,7 @@ const Hero = ({ elements }) => {
         <p className="hero-subtext">
           Over <span className="highlight">10 crore</span> learners trust us for their preparation
         </p>
-        {showOtp && <p style={{ textAlign: "center", marginBottom: "10px", width: "87%", textDecoration: "bold" }}>Enter the otp sent on your Email</p>}
+        {Box && <p style={{ textAlign: "center", marginBottom: "10px", width: "87%", textDecoration: "bold" }}>Enter the otp sent on your Email</p>}
         <div className="phone-input" style={{ border: `1px solid ${emailErr ? "red" : "black"}` }}>
           <span className="country-code">Email</span>
           <input type="text" placeholder="abc@example.com"
@@ -142,7 +141,7 @@ const Hero = ({ elements }) => {
           />
         </div>
         {emailErr && <p data-aos="fade-right" style={{ textAlign: 'start', color: "red", marginBottom: "17px" }}>{emailErr}</p>}
-        {showOtp && <div className=" interface-otp abc" data-aos="fade-down">
+        {Box && <div className=" interface-otp abc" data-aos="fade-down">
           {[...Array(6)].map((_, i) => (
             <input key={i} type="text"
               inputMode="numeric"
@@ -151,15 +150,14 @@ const Hero = ({ elements }) => {
               ref={(el) => Otp.current[i] = el}
               className="otp-input" onChange={(e) => handlechange(e, i)} onKeyDown={(e) => handleKeyDown(e, i)} />
           ))}
-          <div className="login-link abcd" style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }} onClick={() => { setDisable(false); setshowOtp(false); setEnable(false) }}>Change Email</div>
+          <div className="login-link abcd" style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }} onClick={() => { setDisable(false); ShowBox(false); setEnable(false) }}>Change Email</div>
         </div>}
         {enable ?
-          showOtp && <p className="login-link" onClick={Sendotp} style={{ textAlign: "center", marginBottom: "10px", width: "86%" }}>Resend Otp</p> :
-          showOtp && <p style={{ textAlign: "center", marginBottom: "10px", width: "86%" }}>{`Resend otp in ${time}`}</p>
+          Box && <p className="login-link" onClick={Sendotp} style={{ textAlign: "center", marginBottom: "10px", width: "86%" }}>Resend Otp</p> :
+          Box && <p style={{ textAlign: "center", marginBottom: "10px", width: "86%" }}>{`Resend otp in ${time}`}</p>
         }
-
-        {(!emailErr && !showOtp) && <p className="otp-note" style={{ textAlign: 'center', width: "87%" }}>We'll send an OTP for verification</p>}
-        <button className="cta-btn">{showOtp ? `Submit Otp` : `Join for free`}</button>
+        {(!emailErr && !Box) && <p className="otp-note" style={{ textAlign: 'center', width: "87%" }}>We'll send an OTP for verification</p>}
+        <button className="cta-btn">{(Box) ? `Submit Otp` : `Join for free`}</button>
       </form>
       <div className="hero-right">
         <div className="circle-images">

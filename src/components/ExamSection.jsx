@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import "../styles.css"
 import Toast from "../Toast/Toast";
-const ExamSection = ({ func,elements }) => {
+const ExamSection = ({ func,elements,funcs }) => {
   const right = [0, 1, 4, 5];
   const { setShow } = func;
+  const {ShowBox,setDisable}=funcs;
   const { toast, type, onClose, setToast, setType }=elements;
   const open = () => {
     setShow(true);
+    ShowBox(false);
+    setDisable(false);
     setToast("Login To Continue");
     setType("error");
     setTimeout(() => {
