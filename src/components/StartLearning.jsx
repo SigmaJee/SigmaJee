@@ -9,7 +9,7 @@ const StartLearning = ({ func,funcs }) => {
       <div className="learning-left" data-aos="fade-right">
         <h2 className="learning-heading">
           Start learning with <br/>
-          <span>Unacademy</span>
+          <span>Sigma JEE</span>
         </h2>
         <p className="learning-subtext">
           Get unlimited access to structured <br />

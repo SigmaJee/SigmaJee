@@ -7,17 +7,17 @@ const Footer = () => {
         <div className="footer-left">
           <h2 className="footer-logo">
             <span style={{ color: "#00b3a4" }}>🟢</span>
-            <span style={{ color: "#0b6fff" }}>unacademy</span>
+            <span style={{ color: "#0b6fff" }}>Sigma JEE</span>
           </h2>
           <p className="footer-description">
-            Unacademy is democratising education,<br />
+            Sigma JEE is democratising education,<br />
             making it accessible to all. Join the revolution,<br />
             learn on India’s largest learning platform.
           </p>
           <div className="footer-contact">
             <p><strong>Reach out to us</strong></p>
-            <p>Get your questions answered about learning<br /> with Unacademy.</p>
-            <p>📞 Call <strong>+91 8585858585</strong></p>
+            <p>Get your questions answered about learning<br /> with Sigma JEE.</p>
+            <p>📞 Call <strong>+91 8370944506</strong></p>
           </div>
         </div>
 
@@ -27,7 +27,7 @@ const Footer = () => {
             ["Help & support", ["User Guidelines", "Site Map", "Refund Policy", "Takedown Policy", "Grievance Redressal"]],
             ["Company", ["📱 Learner app", "👨‍🏫 Educator app", "👪 Parent app"]],
             ["Popular goals", ["IIT JEE", "UPSC", "SSC", "CSIR UGC NET", "NEET UG"]],
-            ["Unacademy Centre", ["IIT JEE", "NEET UG", "Kota Foundation", "Delhi UPSC"]],
+            ["Sigma JEE Centre", ["IIT JEE", "NEET UG", "Kota Foundation", "Delhi UPSC"]],
             ["Study material", ["UPSC Study Material", "NEET UG Study Material", "CA Foundation Study Material", "JEE Study Material", "SSC Study Material"]],
           ].map(([heading, items], idx) => (
             <div className="footer-column" key={idx}>
