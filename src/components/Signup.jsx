@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import "../styles.css";
 import { useRef } from "react";
 import Toast from "../Toast/Toast.jsx";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import axios from "axios";
 import validator from "validator"
 import { useNavigate } from "react-router-dom";
+import { SignupAuth } from "./CanGoSignup/canSignupContext.jsx";
 const Signup = ({ funcs, elements }) => {
     const navigate = useNavigate();
     const { setisSignup, setisLogin, setshowEmail, setshowOtp, showOtp, showEmail } = funcs;
@@ -17,7 +18,8 @@ const Signup = ({ funcs, elements }) => {
     const [enable, setEnable] = useState(false);
     const [time, setTime] = useState(30);
     const actOtpRef = useRef("");
-    const api = import.meta.env.VITE_API
+    const {canSignup,setCanSignup}=SignupAuth();
+    const api = import.meta.env.VITE_API;
     const login = () => {
         setisLogin(true);
         setisSignup(false);
@@ -64,11 +66,14 @@ const Signup = ({ funcs, elements }) => {
         const finOtp = otpRef.current.map((input) => input.value).join("");
         if (finOtp === actOtpRef.current) {
             setloading(true);
+            sessionStorage.setItem("isvalid",true);
+            sessionStorage.setItem("email",email);
+            setCanSignup(true);
             setTimeout(() => {
                 setloading(false);
                 navigate("/signup-form", { replace: true });
             }, 3000);
-             sessionStorage.setItem("email",email);
+             
         }
         else {
             setToast("Incorrect Otp");

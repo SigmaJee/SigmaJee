@@ -6,6 +6,7 @@ import axios from "axios";
 import validator from "validator"
 import { useNavigate } from "react-router-dom";
 import { useAuth } from '../LoginContext/loginContext';
+import { SignupAuth } from "./CanGoSignup/canSignupContext";
 const Hero = ({ elements, funcs }) => {
   const api = import.meta.env.VITE_API;
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ const Hero = ({ elements, funcs }) => {
   const actOtp = useRef("");
   const email = useRef("");
   const Otp = useRef([]);
-  
+  const {canSignup,setCanSignup}=SignupAuth();
   const handlechange = (e, index) => {
     if (Otp.current[index] !== "" && index < 5) {
       Otp.current[index + 1].focus();
@@ -28,11 +29,14 @@ const Hero = ({ elements, funcs }) => {
     const finOtp = Otp.current.map((input) => input.value).join("");
     if (finOtp === actOtp.current) {
       setloading(true);
+      sessionStorage.setItem("isvalid",true);
+      setCanSignup(true);
+      sessionStorage.setItem("email",email.current);
         setTimeout(() => {
           setloading(false);
           navigate("/signup-form", { replace: true });
         }, 3000);
-         sessionStorage.setItem("email",email.current);
+         
     
       return;
   }

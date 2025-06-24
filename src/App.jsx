@@ -15,6 +15,7 @@ import HomePage from "./Home/HomePage.jsx";
 import Loading from "./Loading/loading.jsx";
 import SignupPage from "./SignupForm/SignupForm.jsx";
 import { useAuth } from "./LoginContext/loginContext.jsx";
+import { SignupAuth } from "./components/CanGoSignup/canSignupContext.jsx";
 function App() {
 
   useEffect(() => {
@@ -32,6 +33,7 @@ function App() {
   const funcs = { Box, ShowBox, disable, setDisable };
   const [loading, setloading] = useState(false);
   const { user } = useAuth();
+  const { canSignup } = SignupAuth();
   const onClose = () => {
     setToast("");
   }
@@ -42,7 +44,7 @@ function App() {
       {loading && <Loading />}
       <Routes>
         <Route path="/signup-form" element={
-          user ? <SignupPage elements={elements} /> :
+          canSignup ? <SignupPage elements={elements} /> :
             <>
               {Show && <Sidebar func={func} elements={elements} />}
               <Navbar func={func} funcs={funcs} />
@@ -62,7 +64,7 @@ function App() {
           <StartLearning func={func} funcs={funcs} />
           <Footer />
         </>} />
-        <Route path="/home" element={user?<HomePage />:<>
+        <Route path="/home" element={user ? <HomePage /> : <>
           {Show && <Sidebar func={func} elements={elements} />}
           <Navbar func={func} funcs={funcs} />
           <Hero elements={elements} funcs={funcs} />

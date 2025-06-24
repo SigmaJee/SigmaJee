@@ -4,12 +4,17 @@ import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import { LoginProvider } from './LoginContext/loginContext.jsx'
+import { CanSignupContext } from './components/CanGoSignup/canSignupContext.jsx'
 createRoot(document.getElementById('root')).render(
-  <LoginProvider>
-    <BrowserRouter>
-      <StrictMode>
-        <App />
-      </StrictMode>
-    </BrowserRouter>
-  </LoginProvider>
+
+    <LoginProvider>
+        <CanSignupContext>
+      <BrowserRouter>
+        <StrictMode>
+          <App />
+        </StrictMode>
+      </BrowserRouter>
+      </CanSignupContext>
+    </LoginProvider>
+
 )

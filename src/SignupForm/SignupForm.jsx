@@ -6,6 +6,7 @@ import 'aos/dist/aos.css';
 import { NavLink, replace, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../LoginContext/loginContext';
+import { SignupAuth } from '../components/CanGoSignup/canSignupContext';
 const SignupPage = ({ elements }) => {
     const navigate = useNavigate();
     const passRef = useRef("");
@@ -13,7 +14,7 @@ const SignupPage = ({ elements }) => {
     const { setUser } = useAuth();
     const [show, setshow] = useState(false);
     const { register, handleSubmit, formState: { errors }, reset, clearErrors } = useForm();
-
+    const { canSignup, setCanSignup } = SignupAuth();
     useEffect(() => {
         if (Object.keys(errors).length > 0) {
             const timer = setTimeout(() => {
@@ -54,6 +55,7 @@ const SignupPage = ({ elements }) => {
         const email = sessionStorage.getItem("email");
         await axios.post(`${api}/delete-user`, { Email: email }).then((res) => {
             sessionStorage.removeItem("email");
+            setCanSignup(false);
             setUser(false);
             navigate("/", { replace: true });
         }).catch((err) => {

@@ -4,7 +4,6 @@ import Toast from "../Toast/Toast";
 import axios from "axios";
 import validator from "validator"
 import { useNavigate } from "react-router-dom";
-import { useAuth } from '../LoginContext/loginContext';
 const OtpVerification = ({ funcs, elements }) => {
     const navigate = useNavigate();
     const { setisLogin, setshowEmail, showEmail, showOtp, setshowOtp } = funcs;
@@ -50,7 +49,6 @@ const OtpVerification = ({ funcs, elements }) => {
             }, 3000);
             console.log(err);
         })
-
     }
     const submit = () => {
         const finOtp = otpRef.current.map((input) => input.value).join("");
