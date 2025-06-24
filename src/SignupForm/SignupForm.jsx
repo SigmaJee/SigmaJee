@@ -28,16 +28,18 @@ const SignupPage = ({elements}) => {
 
     const ValidateClass = (Class) => {
         if (Class.length > 2 || Class.length === 0) return "Enter valid class (1-99)";
-        const regex = /^[1-9][0-9]?$/;
-        return regex.test(Class) || "Enter valid class (1-99)";
+        const regex = /^[1-9][0-2]?$/;
+        return regex.test(Class) || "Enter valid class (1-12)";
     }
-    const api=import.meta.env.VITE_URI;
+    const api=import.meta.env.VITE_API;
     const onSubmit = async (data) => {
         const email = sessionStorage.getItem("email");
+        
         await axios.post(`${api}/create-user`,{Email:email,Name:data.Name,Class:data.Class,Password:data.Pass}).then((res)=>{
              setloading(true);
              setTimeout(() => {
                 setloading(false);
+                reset();
                 navigate("/home",{replace:true});
              }, 3000);
 
