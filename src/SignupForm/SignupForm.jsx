@@ -50,6 +50,7 @@ const SignupPage = ({elements}) => {
    const onBack=async ()=>{
      const email = sessionStorage.getItem("email");
      await axios.post(`${api}/delete-user`,{Email:email}).then((res)=>{
+        sessionStorage.removeItem("email");
         navigate("/",{replace:true});
      }).catch((err)=>{
         console.log("Err in back");
