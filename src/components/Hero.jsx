@@ -5,12 +5,12 @@ import { useRef } from "react";
 import axios from "axios";
 import validator from "validator"
 import { useNavigate } from "react-router-dom";
-const Hero = ({ elements,funcs }) => {
+const Hero = ({ elements, funcs }) => {
   const api = import.meta.env.VITE_API;
   const navigate = useNavigate();
-  const {Box,ShowBox,disable,setDisable}=funcs
+  const { Box, ShowBox, disable, setDisable } = funcs
   const [emailErr, setEmailerr] = useState("");
-  const { toast, type, onClose, setToast, setType } = elements;
+  const { toast, type, onClose, setToast, setType, setloading } = elements;
   const [time, setTime] = useState(30);
   const [enable, setEnable] = useState(false);
   const actOtp = useRef("");
@@ -24,12 +24,22 @@ const Hero = ({ elements,funcs }) => {
   const onSubmit = () => {
     const finOtp = Otp.current.map((input) => input.value).join("");
     if (finOtp === actOtp.current) {
-      navigate("/home", { replace: true });
+      setloading(true);
+
+      // This guarantees React re-render first
+      
+        setTimeout(() => {
+          setloading(false);
+          navigate("/signup-form", { replace: true });
+        }, 2000);
+    
       return;
-    }
+  }
+
     else {
       setToast("Incorrect Otp");
       setType("error");
+
       setTimeout(() => {
         setToast("");
       }, 4000);
@@ -91,27 +101,27 @@ const Hero = ({ elements,funcs }) => {
 
   }
   const handleKeyDown = (e, index) => {
-  const key = e.key;
+    const key = e.key;
 
-  if (key === "ArrowLeft" && index > 0) {
-    Otp.current[index - 1].focus();
-  }
+    if (key === "ArrowLeft" && index > 0) {
+      Otp.current[index - 1].focus();
+    }
 
-  if (key === "ArrowRight" && index < 5) {
-    Otp.current[index + 1].focus();
-  }
+    if (key === "ArrowRight" && index < 5) {
+      Otp.current[index + 1].focus();
+    }
 
     if (key === "Backspace") {
-    if (Otp.current[index].value === "") {
-      if (index > 0) {
-        Otp.current[index - 1].focus();
-        Otp.current[index - 1].value = ""; // also clear the previous one
+      if (Otp.current[index].value === "") {
+        if (index > 0) {
+          Otp.current[index - 1].focus();
+          Otp.current[index - 1].value = ""; // also clear the previous one
+        }
+      } else {
+        Otp.current[index].value = ""; // just clear current box
       }
-    } else {
-      Otp.current[index].value = ""; // just clear current box
     }
-  }
-};
+  };
 
   return (
     <section className="hero" data-aos="fade-up">

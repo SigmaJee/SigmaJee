@@ -11,7 +11,7 @@ const Navbar = ({ func ,funcs}) => {
   return (
     <header className="navbar">
       <div className="logo">
-        un<span className="logo-highlight">academy</span>
+       <div className="logo-highlight"> unacademy</div>
       </div>
       <div className="navbar-buttons ">
         <button className="login-btn" onClick={Open}>Log in</button>

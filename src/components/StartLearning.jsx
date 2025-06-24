@@ -1,19 +1,21 @@
 import React from "react";
 import "../styles.css"
-const StartLearning = ({func}) => {
-  const {setShow}=func;
+const StartLearning = ({ func,funcs }) => {
+
+  const { setShow } = func;
+  const {ShowBox,setDisable}=funcs;
   return (
     <section className="start-learning-section">
       <div className="learning-left" data-aos="fade-right">
         <h2 className="learning-heading">
-          Start learning with <br />
+          Start learning with <br/>
           <span>Unacademy</span>
         </h2>
         <p className="learning-subtext">
           Get unlimited access to structured <br />
           courses & doubt clearing sessions
         </p>
-        <button className="start-btn" onClick={()=>{setShow(true)}}>Start learning</button>
+        <button className="start-btn" onClick={() => { setShow(true) ;setDisable(false);ShowBox(false) }}>Start learning</button>
       </div>
 
       <div className="learning-right" data-aos="fade-left">
@@ -29,7 +31,7 @@ const StartLearning = ({func}) => {
               <p className="info-title">{title}</p>
               <h3>{value}</h3>
             </div>
-            <img src={img} className={`${i===1?"ab":"none"}`} alt={title} />
+            <img src={img} className={`${i === 1 ? "ab" : "none"}`} alt={title} />
           </div>
         ))}
       </div>

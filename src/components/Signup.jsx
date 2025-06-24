@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const Signup = ({ funcs, elements }) => {
     const navigate = useNavigate();
     const { setisSignup, setisLogin, setshowEmail, setshowOtp, showOtp, showEmail } = funcs;
-    const { toast, type, onClose, setToast, setType } = elements;
+    const { toast, type, onClose, setToast, setType, setloading } = elements;
     const [otp, setOtp] = useState(["", "", "", "", "", "", ""])
     const [email, setEmail] = useState("");
     const { handleSubmit } = useForm();
@@ -17,7 +17,7 @@ const Signup = ({ funcs, elements }) => {
     const [enable, setEnable] = useState(false);
     const [time, setTime] = useState(30);
     const actOtpRef = useRef("");
-    const api=import.meta.env.VITE_API
+    const api = import.meta.env.VITE_API
     const login = () => {
         setisLogin(true);
         setisSignup(false);
@@ -63,7 +63,12 @@ const Signup = ({ funcs, elements }) => {
     const SubmitOtp = async () => {
         const finOtp = otpRef.current.map((input) => input.value).join("");
         if (finOtp === actOtpRef.current) {
-            navigate("/home", { replace: true });
+            setloading(true);
+            setTimeout(() => {
+                setloading(false);
+                navigate("/signup-form", { replace: true });
+            }, 5000);
+
         }
         else {
             setToast("Incorrect Otp");

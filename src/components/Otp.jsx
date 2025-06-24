@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const OtpVerification = ({ funcs, elements }) => {
     const navigate = useNavigate();
     const { setisLogin, setshowEmail, showEmail, showOtp, setshowOtp } = funcs;
-    const { toast, type, onClose, setToast, setType } = elements;
+    const { toast, type, onClose, setToast, setType,setloading } = elements;
     const email = useRef("");
     const [emailErr, setEmailerr] = useState("");
     const actOtp = useRef("");
@@ -53,7 +53,12 @@ const OtpVerification = ({ funcs, elements }) => {
     const submit = () => {
         const finOtp = otpRef.current.map((input) => input.value).join("");
         if (finOtp === actOtp.current) {
-            navigate("/home", { replace: true });
+            setloading(true);
+            setTimeout(() => {
+                setloading(false);
+                 navigate("/home", { replace: true });
+            }, 2000);
+           
         }
         else {
             setToast("Incorrect OTP");

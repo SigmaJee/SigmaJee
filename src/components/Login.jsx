@@ -11,7 +11,7 @@ const Login = ({ funcs, elements }) => {
     const navigate = useNavigate();
     const { setisSignup, setisLogin } = funcs;
     const { handleSubmit, reset } = useForm();
-    const { toast, type, onClose, setToast, setType } = elements;
+    const { toast, type, onClose, setToast, setType,setloading } = elements;
     const [Emailerr, setEmailerr] = useState("");
     const [Passerr, setPasserr] = useState("");
     const [Pass, ShowPass] = useState(false);
@@ -55,7 +55,12 @@ const Login = ({ funcs, elements }) => {
         await axios.post(`${api}/login`, { email: email.current, pass: Password.current }).then((res) => {
             setToast("Success");
             setType("success");
-            navigate("/home", { replace: true });
+            setloading(true);
+            setTimeout(() => {
+                setloading(false);
+                navigate("/home", { replace: true });
+            }, 2000);
+            
         }).catch((err) => {
             setPasserr(err.response.data.message);
             setTimeout(() => {

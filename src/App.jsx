@@ -8,11 +8,12 @@ import StartLearning from "./components/StartLearning.jsx";
 import Footer from "./components/Footer.jsx";
 import 'aos/dist/aos.css';
 import AOS from "aos";
-import "./styles.css"
 import Sidebar from "./components/Sidebar.jsx";
 import Toast from "./Toast/Toast.jsx";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./Home/HomePage.jsx";
+import Loading from "./Loading/loading.jsx";
+import SignupPage from "./SignupForm/SignupForm.jsx";
 function App() {
 
   useEffect(() => {
@@ -28,26 +29,32 @@ function App() {
   const [disable, setDisable] = useState(false);
   const func = { Show,setShow };
   const funcs={Box,ShowBox,disable,setDisable};
+  const [loading,setloading]=useState(false);
 
   const onClose = () => {
     setToast("");
   }
-  const elements = { toast, type, onClose, setToast, setType };
+  const elements = { toast, type, onClose, setToast, setType,setloading };
   return (
     <>
       {toast && <Toast elements={elements} />}
+      {loading&&<Loading/>}
       <Routes>
+          <Route path="/signup-form" element={
+             <SignupPage/>
+          }/>
         <Route path="/" element={<>
           {Show && <Sidebar func={func} elements={elements} />}
           <Navbar func={func} funcs={funcs} />
           <Hero elements={elements} funcs={funcs}  />
           <ExamSection func={func} elements={elements} funcs={funcs} />
           <Features />
-          <StartLearning func={func}/>
+          <StartLearning func={func} funcs={funcs}/>
           <Footer />
         </>} />
         <Route path="/home" element={<HomePage/>}/>
       </Routes>
+     
 
 
     </>
