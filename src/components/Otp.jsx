@@ -4,10 +4,11 @@ import Toast from "../Toast/Toast";
 import axios from "axios";
 import validator from "validator"
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../LoginContext/loginContext";
 const OtpVerification = ({ funcs, elements }) => {
     const navigate = useNavigate();
     const { setisLogin, setshowEmail, showEmail, showOtp, setshowOtp } = funcs;
-    const { toast, type, onClose, setToast, setType,setloading } = elements;
+    const { toast, type, onClose, setToast, setType, setloading } = elements;
     const email = useRef("");
     const [emailErr, setEmailerr] = useState("");
     const actOtp = useRef("");
@@ -15,7 +16,7 @@ const OtpVerification = ({ funcs, elements }) => {
     const [time, setTime] = useState(30);
     const [enable, setEnable] = useState(false);
     const { setUser } = useAuth();
-    const api=import.meta.env.VITE_API
+    const api = import.meta.env.VITE_API
     const Back = () => {
         setisLogin(true);
         setshowEmail(true);
@@ -54,12 +55,12 @@ const OtpVerification = ({ funcs, elements }) => {
         const finOtp = otpRef.current.map((input) => input.value).join("");
         if (finOtp === actOtp.current) {
             setloading(true);
-             setUser(true);
+            setUser(true);
             setTimeout(() => {
                 setloading(false);
-                 navigate("/home", { replace: true });
+                navigate("/home", { replace: true });
             }, 2000);
-            sessionStorage.setItem("email",email.current);
+            sessionStorage.setItem("email", email.current);
         }
         else {
             setToast("Incorrect OTP");
@@ -153,7 +154,7 @@ const OtpVerification = ({ funcs, elements }) => {
                     <button type="submit" className="login-button" >{(showEmail && !showOtp) ? "Verify" : "Submit"}</button>
                     <div className="login-links" style={{ marginTop: "10px" }}>
                         <div href="#" className="login-link" onClick={Back}>Back</div>
-                        {showOtp&&<div href="#" className="login-link" onClick={() => { setdisable(false), setshowOtp(false) }}>Change Email</div>}
+                        {showOtp && <div href="#" className="login-link" onClick={() => { setdisable(false), setshowOtp(false) }}>Change Email</div>}
                     </div>
                 </form>
             </div>
