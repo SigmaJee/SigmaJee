@@ -1025,22 +1025,26 @@ body {
     font-size: 16px;
     margin-left: 12px;
   }
-  .side-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100vw;
-    height: 40vh;
-    background-color: #eceeed;
-    z-index: 1000000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: fadeUpMobile 0.5s ease-out forwards;
-    /* Initial hidden state before animation */
-    transform: translateY(100%);
-    opacity: 0;
-  }
+.side-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  max-height: 90vh; /* prevent too tall on mobile */
+  background-color: #eceeed;
+  z-index: 1001;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  animation: fadeUpMobile 0.4s ease-out forwards;
+  transform: translateY(100%);
+  opacity: 0;
+  overflow-y: auto;  /* allow scroll if content grows */
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
  
   @keyframes fadeUpMobile {
     to {
@@ -1068,11 +1072,6 @@ body {
   input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
-  }
-  .side-bar{
-    height: 45vh;
-    position: fixed;
-    bottom: 0;
   }
   .login-box {
     width: 90%;
