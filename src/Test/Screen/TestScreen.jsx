@@ -38,7 +38,7 @@ const TestScreen = () => {
   useEffect(() => {
     const tpid = Cookies.get("testid");
     const fetchPaper = async () => {
-      axios.post("api/user/get-test", { id: tpid }).then((res) => {
+      axios.post(` ${api}/user/get-test`, { id: tpid }).then((res) => {
         setStatements(res.data.Statements);
         setOptions(res.data.Options);
         setlen(res.data.len);

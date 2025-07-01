@@ -3,29 +3,34 @@ import './Home.css';
 import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   return (
     <div className="hm-pg">
       {/* NAVBAR */}
-      <header className="hm-navbar">
+      <div className="hm-navbar">
         <div className="hm-logo">
           Sigma<span className="hm-logo-highlight">JEE</span>
         </div>
-        <div className="hm-navbar-buttons">
-          <button className="hm-nav-btn" >Home</button>
-          <button className="hm-nav-btn"onClick={()=>{
-            navigate("/test-page");
-          }}>Test Papers</button>
-          <button className="hm-nav-btn">Live Lectures</button>
-          <button className="hm-nav-btn">Study Material</button>
-          <button className="hm-nav-btn">Classes</button>
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png"
-            alt="Profile Icon"
-            className="hm-profile-icon"
-          />
+        <div className="hm-nav-btns">
+           <div className="hm-desk-navbar-buttons">
+          <button className="hm-desk-nav-btn">Home</button>
+          <button className="hm-desk-nav-btn" onClick={() => navigate("/test-page")}>Test Papers</button>
+          <button className="hm-desk-nav-btn">Live Lectures</button>
+          <button className="hm-desk-nav-btn">Study Material</button>
+          <button className="hm-desk-nav-btn">Classes</button>
+          <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="Profile Icon" className="hm-profile-icon" />
         </div>
-      </header>
+
+          <div className="hm-mobile-icons">
+          <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="Profile Icon" className="hm-profile-icon" />
+          <img src="https://cdn-icons-png.flaticon.com/512/56/56763.png" alt="Hamburger" className="hm-hamburger-icon" />
+        </div>
+
+        </div>
+       
+        {/* Mobile-only icons */}
+        
+      </div>
 
       {/* HERO SECTION */}
       <section className="hm-hero">
@@ -59,14 +64,14 @@ const HomePage = () => {
             <h3>Chemistry</h3>
             <p>Learn reactions, equations and atomic structures thoroughly.</p>
           </div>
-          <div className="hm-subject-card"data-aos="fade-right">
+          <div className="hm-subject-card" data-aos="fade-right">
             <h3>Mathematics</h3>
             <p>Practice algebra, calculus and geometry with expert material.</p>
           </div>
         </div>
         <div className="hm-explore-right">
           <h2 className="hm-section-heading">Student Reviews</h2>
-          <div className="hm-review-box"data-aos="fade-left">
+          <div className="hm-review-box" data-aos="fade-left">
             <div className="hm-review-message hm-received">
               "SigmaJEE helped me boost my mock test scores by 40%!"
             </div>
@@ -88,7 +93,7 @@ const HomePage = () => {
           <p className="hm-tp-hero-subtext">
             Get full-length practice papers, mock tests and timed challenges curated by experts.
           </p>
-          <button className="hm-cta-btn"onClick={()=>{
+          <button className="hm-cta-btn" onClick={() => {
             navigate("/test-page");
           }}>Get Started</button>
         </div>
@@ -135,7 +140,7 @@ const HomePage = () => {
             ["https://randomuser.me/api/portraits/women/44.jpg", "Anjali Mehra", ["NIT Trichy Alumna", "Chemistry Mentor", "Ex-Byju's Faculty"]],
             ["https://randomuser.me/api/portraits/men/51.jpg", "Rakesh Patel", ["IIT Delhi Alumni", "Maths Specialist", "Author of 3 Books"]]
           ].map(([src, name, points], i) => (
-            <div className="hm-mentorship-card" data-aos={`${i==0?"fade-right":i==1?"fade-up":"fade-left"}`} key={i}>
+            <div className="hm-mentorship-card" data-aos={`${i == 0 ? "fade-right" : i == 1 ? "fade-up" : "fade-left"}`} key={i}>
               <img src={src} alt={name} />
               <h4>{name}</h4>
               <ul>

@@ -39,7 +39,7 @@ const OtpVerification = ({ funcs, elements }) => {
             }, 3000);
             return;
         };
-        await axios.post(`api/user/find-user`, { Email: email.current }).then(async (res) => {
+        await axios.post(` ${api}/user/find-user`, { Email: email.current }).then(async (res) => {
             setshowOtp(true);
             setdisable(true);
             await sendOtp();
@@ -62,7 +62,7 @@ const OtpVerification = ({ funcs, elements }) => {
             }, 3000);
             
             sessionStorage.setItem("email", email.current);
-            await axios.post(`api/user/give-user`,{Email:email}).then((res)=>{
+            await axios.post(` ${api}/user/give-user`,{Email:email}).then((res)=>{
                    console.log("Got user");  
             }).catch(err=>{
                 console.log(err);

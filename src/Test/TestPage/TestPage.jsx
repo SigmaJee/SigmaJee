@@ -26,7 +26,7 @@ const TestPage = () => {
       }, 3000);
       return;
     }
-    await axios.post("api/user/create-test", { Title: title, Subject: subject }).then((res) => {
+    await axios.post(` ${api}/user/create-test`, { Title: title, Subject: subject }).then((res) => {
       console.log("Test Created Successfully");
       navigate("/test-create")
     }).catch((err) => {

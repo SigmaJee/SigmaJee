@@ -127,7 +127,7 @@ const CreateTest = () => {
     }
     const FinalSubmit = async () => {
         try {
-            await axios.post("api/user/edit-paper", { Statements, Saved, Options, Answers, duration });
+            await axios.post(` ${api}/user/edit-paper`, { Statements, Saved, Options, Answers, duration });
             console.log("Tp Created ");
             Cookies.remove("id");
             localStorage.clear();

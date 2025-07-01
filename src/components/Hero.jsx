@@ -67,7 +67,7 @@ const Hero = ({ elements, funcs }) => {
       return;
     }
 
-    await axios.post(`api/user/signup`, { Email: email }).then(async (res) => {
+    await axios.post(` ${api}/user/signup`, { Email: email }).then(async (res) => {
       ShowBox(true);
       setDisable(true);
       await Sendotp();
@@ -95,7 +95,7 @@ const Hero = ({ elements, funcs }) => {
       })
 
     }, 1000);
-    await axios.post(`api/user/send-otp`, { Email: email.current }).then((res) => {
+    await axios.post(` ${api}/user/send-otp`, { Email: email.current }).then((res) => {
       console.log("otp sent");
       actOtp.current = String(res.data.otp);
     }).catch(err => {
