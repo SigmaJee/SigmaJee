@@ -1071,6 +1071,8 @@ body {
   }
   .side-bar{
     height: 45vh;
+    position: fixed;
+    bottom: 0;
   }
   .login-box {
     width: 90%;
