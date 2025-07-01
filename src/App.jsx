@@ -1,14 +1,9 @@
 // App.js
 import React, { useEffect, useState } from "react";
-import Navbar from "./components/Navbar.jsx";
-import Hero from "./components/Hero.jsx";
-import ExamSection from "./components/ExamSection.jsx";
-import Features from "./components/Features.jsx";
-import StartLearning from "./components/StartLearning.jsx";
-import Footer from "./components/Footer.jsx";
+import Fullpage from "./components/FullPage.jsx";
+import { useLocation } from "react-router-dom";
 import 'aos/dist/aos.css';
 import AOS from "aos";
-import Sidebar from "./components/Sidebar.jsx";
 import Toast from "./Toast/Toast.jsx";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./Home/HomePage.jsx";
@@ -16,14 +11,26 @@ import Loading from "./Loading/loading.jsx";
 import SignupPage from "./SignupForm/SignupForm.jsx";
 import { useAuth } from "./LoginContext/loginContext.jsx";
 import { SignupAuth } from "./components/CanGoSignup/canSignupContext.jsx";
+import CreateTest from "./Test/CreateTest/CreateTest.jsx";
+import TestPage from "./Test/TestPage/TestPage.jsx";
+import Untest from "./Test/UnattTest/Untest.jsx";
+import TestScreen from "./Test/Screen/TestScreen.jsx";
+import Attest from "./Test/AttemptedTest/Attempted.jsx";
 function App() {
-
+   const location = useLocation(); 
   useEffect(() => {
     AOS.init({
       duration: 800,
       once: false,
     });
   }, []);
+
+  useEffect(() => {
+    // Wait 200ms after route change to ensure DOM updates
+    setTimeout(() => {
+      AOS.refreshHard();  // More aggressive than AOS.refresh()
+    }, 10);
+  }, [location]);
   const [toast, setToast] = useState("");
   const [type, setType] = useState("");
   const [Show, setShow] = useState(false);
@@ -34,6 +41,7 @@ function App() {
   const [loading, setloading] = useState(false);
   const { user } = useAuth();
   const { canSignup } = SignupAuth();
+   
   const onClose = () => {
     setToast("");
   }
@@ -43,40 +51,23 @@ function App() {
       {toast && <Toast elements={elements} />}
       {loading && <Loading />}
       <Routes>
+         <Route path='/test-screen' element={user?<TestScreen />:<Fullpage elements={elements} func={func} funcs={funcs}/>} />
+         <Route path='/att-test' element={user?<Attest />:<Fullpage elements={elements} func={func} funcs={funcs}/>} />
+         <Route path='/test-screen' element={user?<TestScreen />:<Fullpage elements={elements} func={func} funcs={funcs}/>} />
+         <Route path='/untest' element={user?<Untest />:<Fullpage elements={elements} func={func} funcs={funcs}/>} />
+          <Route path='/test-page' element={user?<TestPage />:<Fullpage elements={elements} func={func} funcs={funcs}/>} />
+          <Route path='/test-create' element={user?<CreateTest />:<Fullpage elements={elements} func={func} funcs={funcs}/>} />
         <Route path="/signup-form" element={
           canSignup ? <SignupPage elements={elements} /> :
             <>
-              {Show && <Sidebar func={func} elements={elements} />}
-              <Navbar func={func} funcs={funcs} />
-              <Hero elements={elements} funcs={funcs} />
-              <ExamSection func={func} elements={elements} funcs={funcs} />
-              <Features />
-              <StartLearning func={func} funcs={funcs} />
-              <Footer />
+              <Fullpage elements={elements} func={func} funcs={funcs}/>
             </>
         } />
-        <Route path="/" element={<>
-          {Show && <Sidebar func={func} elements={elements} />}
-          <Navbar func={func} funcs={funcs} />
-          <Hero elements={elements} funcs={funcs} />
-          <ExamSection func={func} elements={elements} funcs={funcs} />
-          <Features />
-          <StartLearning func={func} funcs={funcs} />
-          <Footer />
-        </>} />
-        <Route path="/home" element={user ? <HomePage /> : <>
-          {Show && <Sidebar func={func} elements={elements} />}
-          <Navbar func={func} funcs={funcs} />
-          <Hero elements={elements} funcs={funcs} />
-          <ExamSection func={func} elements={elements} funcs={funcs} />
-          <Features />
-          <StartLearning func={func} funcs={funcs} />
-          <Footer />
-        </>} />
+        <Route path="/" element={
+          user?<HomePage/>:
+          <Fullpage elements={elements} func={func} funcs={funcs}/>} />
+        <Route path="/home" element={user ? <HomePage /> : <Fullpage elements={elements} func={func} funcs={funcs}/>} />
       </Routes>
-
-
-
     </>
   );
 }

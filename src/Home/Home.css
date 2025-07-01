@@ -1,0 +1,567 @@
+  * {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      box-sizing: border-box;
+    }
+
+    .hm-pg {
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+    .hm-navbar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 40px;
+      width: 100vw;
+      border-bottom: 1px solid #eee;
+      gap: 25vw;
+    }
+
+    .hm-logo {
+      font-size: 40px;
+      font-weight: bold;
+      color: #0b6fff;
+    }
+
+    .hm-logo-highlight {
+      color: #00b3a4;
+      font-size: 40px;
+    }
+
+    .hm-navbar-buttons {
+      display: flex;
+      align-items: center;
+      gap: 2vw;
+    }
+
+    .hm-nav-btn {
+      padding: 8px 16px;
+      font-weight: 500;
+      cursor: pointer;
+      border-radius: 8px;
+      font-size: 16px;
+      border: 1px solid black;
+      background-color: #ffffff;
+      color: #0e0e0e;
+    }
+
+    .hm-nav-btn:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    .hm-profile-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
+      border: 1px solid #000;
+      padding: 4px;
+      background-color: #fff;
+    }
+
+    /* HERO */
+    .hm-hero {
+      display: flex;
+      justify-content: center;
+      margin-top: 5vh;
+      align-items: center;
+      padding: 60px 40px;
+      flex-wrap: wrap;
+      gap: 10vw;
+        
+        background: linear-gradient(
+    to left,
+    #00b3a4 0%,
+    rgba(0, 179, 164, 0) 40%
+  );
+      
+    }
+
+    .hm-hero-left {
+      width: 40vw;
+      margin-right: 5vw;
+
+
+    }
+
+    .hm-hero-heading {
+      font-size: 50px;
+      font-weight: 650;
+      margin-bottom: 20px;
+    }
+
+    .hm-hero-subtext {
+      font-size: 18px;
+      margin-bottom: 25px;
+    }
+
+    .hm-cta-btn {
+      background-color: #2d2f31;
+      color: #fff;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .hm-hero-right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hm-circle-images {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .hm-circle-images img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    /* EXPLORE + REVIEWS */
+    .hm-explore-section {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 10vw;
+      padding: 60px 40px;
+      flex-wrap: wrap;
+      margin-top: 90px;
+    }
+
+    .hm-explore-left {
+      width: 40vw;
+    }
+
+    .hm-section-heading {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 25px;
+      
+    }
+
+    .hm-subject-card {
+      padding: 8px 16px;
+      font-weight: 500;
+      border-radius: 8px;
+      font-size: 16px;
+      border: 1px solid black;
+      background-color: #ffffff;
+      color: #0e0e0e;
+      margin-bottom: 15px;
+      height: 80px;
+    }
+
+    .hm-subject-card:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    .hm-subject-card h3 {
+      margin: 0 0 8px 0;
+      font-size: 18px;
+    }
+
+    .hm-subject-card p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .hm-explore-right {
+      width: 30vw;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hm-review-box {
+      flex: 1;
+      border: 1px solid black;
+      border-radius: 8px;
+      background-color: #ffffff;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow-y: auto;
+    }
+
+    .hm-review-message {
+      max-width: 75%;
+      padding: 10px 14px;
+      margin: 6px 0;
+      border-radius: 12px;
+      line-height: 1.4;
+    }
+
+    .hm-received {
+      background-color: #f0f0f0;
+      align-self: flex-start;
+      border-top-left-radius: 0;
+    }
+
+    .hm-sent {
+      background-color: #dcf8c6;
+      align-self: flex-end;
+      border-top-right-radius: 0;
+    }
+
+    .hm-add-review-btn {
+      margin-top: 12px;
+      align-self: flex-end;
+      background: #2d2f31;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 24px;
+      line-height: 40px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    /* TEST-PAPER HERO (new reduced-height hero) */
+    .hm-tp-hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 40px;
+      gap: 5vw;
+      flex-wrap: wrap;
+      background: #fafafa;
+      height: 400px;
+      background-color: #ffffff;
+      margin-top: 100px;
+      background: linear-gradient(
+    to right,
+    #00b3a4 0%,
+    rgba(0, 179, 164, 0) 40%
+  );
+    }
+
+    .hm-tp-hero-left {
+      width: 40vw;
+    }
+
+    .hm-tp-hero-heading {
+      font-size: 30px;
+      font-weight: 650;
+      margin-bottom: 16px;
+    }
+
+    .hm-tp-hero-subtext {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .hm-tp-hero-right {
+      width: 40vw;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hm-tp-image {
+      width: 300px;
+      max-width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    /* ─── OUR BLOGS (horizontally scrollable 4‑at‑a‑time) ─── */
+    .hm-blogs-section {
+      padding: 60px 40px;
+      margin-top: 100px;
+    }
+
+    .hm-blogs-section .hm-section-heading {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .hm-blogs-container {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+    }
+
+    .hm-exam-cards {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(250px, 1fr);
+      gap: 25px;
+      padding-bottom: 10px;
+    }
+
+    .hm-exam-card {
+      border: 1px solid #eee;
+      border-radius: 16px;
+      text-align: center;
+      padding: 30px 20px;
+      transition: all 0.3s ease;
+      background-color: white;
+      scroll-snap-align: start;
+    }
+
+    .hm-exam-card:hover {
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .hm-exam-card img {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 15px;
+    }
+
+    .hm-exam-card p {
+      font-weight: 600;
+      font-size: 15px;
+      margin: 0;
+    }
+
+    /* ─── Hide native scrollbar ─── */
+    .hm-blogs-container {
+      /* existing */
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+
+      /* hide scrollbar in WebKit browsers */
+      scrollbar-width: none;
+      /* Firefox */
+      -ms-overflow-style: none;
+      /* IE 10+ */
+    }
+
+    .hm-blogs-container::-webkit-scrollbar {
+      display: none;
+      /* Safari & Chrome */
+    }
+
+    /* ─── Scroll progress indicator ─── */
+    .hm-blogs-container {
+      position: relative;
+      /* for indicator positioning */
+    }
+
+    .hm-scroll-indicator {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 4px;
+      background-color: #000;
+      width: 0%;
+      /* will be updated via JS */
+      transition: width 0.1s ease;
+      border-radius: 2px 2px 0 0;
+    }
+
+    /* ─── PERSONAL MENTORSHIP SECTION ─── */
+    .hm-mentorship-section {
+      padding: 60px 40px;
+      margin-top: 100px;
+    }
+
+    .hm-mentorship-section .hm-section-heading {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .hm-mentorship-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .hm-mentorship-card {
+      border: 1px solid #eee;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      background-color: #ffffff;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .hm-mentorship-card:hover {
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.hm-08);
+    }
+
+    .hm-mentorship-card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    .hm-mentorship-card h4 {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    .hm-mentorship-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0;
+    }
+
+    .hm-mentorship-card ul li {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 6px;
+    }
+
+    .hm-mentorship-card a {
+      display: inline-block;
+      margin-top: 12px;
+      color: #0b6fff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .hm-mentorship-card a:hover {
+      text-decoration: underline;
+    }
+
+    /* ─── FORMULA SHEETS HERO (mirrors Test‑Paper Hero, image on left) ─── */
+    .hm-formula-hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 40px;
+      gap: 8vw;
+      flex-wrap: wrap;
+      background: #ffffff;
+      margin-top: 100px;
+      background: linear-gradient(
+    to left,
+    #00b3a4 0%,
+    rgba(0, 179, 164, 0) 40%
+  );
+    }
+
+    .hm-formula-hero-left {
+      width: 40vw;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hm-formula-image {
+      width: 300px;
+      max-width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .hm-formula-hero-right {
+      width: 40vw;
+    }
+
+    .hm-formula-hero-heading {
+      font-size: 40px;
+      font-weight: 650;
+      margin-bottom: 16px;
+    }
+
+    .hm-formula-hero-subtext {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    /* ─── FOOTER STYLES ─── */
+    .hm-footer {
+      padding: 60px 40px;
+      background-color: #fdfdfd;
+      border-top: 1px solid #eee;
+      color: #2d2f31;
+      margin-top: 150px;
+    }
+
+    .hm-footer-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 60px;
+      justify-content: space-between;
+    }
+
+    .hm-footer-left {
+      max-width: 300px;
+    }
+
+    .hm-footer-logo {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .hm-footer-description {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .hm-footer-apps img {
+      height: 40px;
+      margin-right: 10px;
+      margin-bottom: 20px;
+    }
+
+    .hm-footer-contact p {
+      font-size: 14px;
+      color: #444;
+      margin: 5px 0;
+    }
+
+    .hm-footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .hm-footer-column h4 {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .hm-footer-column p {
+      font-size: 14px;
+      color: #555;
+      margin: 6px 0;
+      cursor: pointer;
+    }
+
+    .hm-footer-column p:hover {
+      color: #000;
+    }
+
+    .hm-footer-bottom {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: #888;
+      flex-wrap: wrap;
+    }
+
+    .hm-footer-socials span {
+      margin-left: 12px;
+      font-size: 18px;
+      cursor: pointer;
+    }

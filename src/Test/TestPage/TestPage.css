@@ -1,0 +1,193 @@
+/* General Container */
+.tp-home-container {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #ffffff;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  justify-content: space-evenly;
+}
+
+/* Navbar */
+.tp-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  padding: 0 40px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  background-color: #ffffff;
+}
+
+.tp-logo {
+  font-size: 32px;
+  font-weight: bold;
+  color: #111;
+}
+
+.tp-logo .tp-highlight {
+  color: #00bfa5;
+}
+
+.tp-nav-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.tp-nav-btn {
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #000;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.tp-btn-outline {
+  border: 2px solid black;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: transparent;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.tp-btn-fill {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Two-column Layout */
+.tp-main-layout {
+  display: flex;
+  flex: 1;
+  height: 100vh;
+}
+
+/* Left Panel */
+.tp-left-panel {
+  width: 400px;
+  background-color: #ffffff;
+  padding: 40px 20px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+/* Right Panel */
+.tp-right-panel {
+  flex: 1;
+  background-color: #f9f9f9;
+}
+
+/* Card Styling */
+.tp-card {
+  background-color: #f1f1f1;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  font-size: 20px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* DialogBox */
+.tp-overlay {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+}
+
+.tp-dialog-box {
+  background: white;
+  z-index: 101;
+  padding: 40px 30px;
+  width: 500px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+}
+
+.tp-dialog-box h2 {
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #1e1e1e;
+}
+
+.tp-input-box {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.tp-submit-btn {
+  width: 100%;
+  padding: 15px;
+  background-color: #2d2d2d;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.tp-or-separator {
+  margin: 10px 0;
+  color: #666;
+}
+
+.tp-links {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-size: 16px;
+}
+
+.tp-links a {
+  color: #0066ee;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.tp-links span {
+  color: #999;
+}
+
+.tp-err {
+  color: rgb(230, 36, 36);
+  font-size: 18px;
+}
+
+.tp-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tp-border {
+  border: 1px solid rgb(230, 36, 36);
+}

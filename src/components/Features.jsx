@@ -1,12 +1,13 @@
 import React from "react";
 import "../styles.css"
+
 const Features = () => {
   return (
     <section className="features-section">
       <div className="feature-card" data-aos="fade-up">
         <img src="https://cdn-icons-png.flaticon.com/512/6815/6815044.png" alt="Live class" />
         <h3>Daily live classes</h3>
-        <p>
+         <p>
           Chat with educators, ask questions, answer live polls, and get your doubts cleared – all while the class is going on
         </p>
       </div>

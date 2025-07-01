@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "../styles.css"
+
 import Toast from "../Toast/Toast";
 const ExamSection = ({ func,elements,funcs }) => {
   const right = [0, 1, 4, 5];
