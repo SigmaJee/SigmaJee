@@ -3,6 +3,7 @@ import './TestScreen.css';
 import Cookies from "js-cookie"
 import axios from 'axios';
 const TestScreen = () => {
+  const api = import.meta.env.VITE_API;
   const [Statements, setStatements] = useState(() => {
     const stored = localStorage.getItem("statements");
     return stored ? stored : Array(50).fill("");
@@ -38,7 +39,7 @@ const TestScreen = () => {
   useEffect(() => {
     const tpid = Cookies.get("testid");
     const fetchPaper = async () => {
-      axios.post(` ${api}/user/get-test`, { id: tpid }).then((res) => {
+      axios.post(` ${api}/get-test`, { id: tpid }).then((res) => {
         setStatements(res.data.Statements);
         setOptions(res.data.Options);
         setlen(res.data.len);

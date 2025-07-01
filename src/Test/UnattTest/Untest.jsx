@@ -5,12 +5,13 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie"
 const Untest = () => {
+    const api = import.meta.env.VITE_API;
     const navigate = useNavigate();
     const { Unattempted, settrig } = TestAuth();
     const Attempt = (testid) => {
         console.log(testid);
         
-        axios.post("api/user/attempt", { testid },{ withCredentials: true }).then((res) => {
+        axios.post(`${api}/attempt`, { testid },{ withCredentials: true }).then((res) => {
             console.log("Marked as Attempted");
             settrig(prev => !prev);
             navigate("/test-screen");

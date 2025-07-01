@@ -3,6 +3,7 @@ import './TestPage.css';
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 const TestPage = () => {
+  const api = import.meta.env.VITE_API;
   const navigate = useNavigate();
   const [show, setshow] = useState(false);
   const [titleErr, setTitleErr] = useState("");
@@ -26,7 +27,7 @@ const TestPage = () => {
       }, 3000);
       return;
     }
-    await axios.post(` ${api}/user/create-test`, { Title: title, Subject: subject }).then((res) => {
+    await axios.post(` ${api}/create-test`, { Title: title, Subject: subject }).then((res) => {
       console.log("Test Created Successfully");
       navigate("/test-create")
     }).catch((err) => {

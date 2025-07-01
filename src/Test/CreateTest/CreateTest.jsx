@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from "js-cookie"
 const CreateTest = () => {
     const navigate = useNavigate();
+    const api = import.meta.env.VITE_API;
     const safeJSONParse = (key, fallback) => {
         try {
             const value = localStorage.getItem(key);
@@ -127,7 +128,7 @@ const CreateTest = () => {
     }
     const FinalSubmit = async () => {
         try {
-            await axios.post(` ${api}/user/edit-paper`, { Statements, Saved, Options, Answers, duration });
+            await axios.post(` ${api}/edit-paper`, { Statements, Saved, Options, Answers, duration });
             console.log("Tp Created ");
             Cookies.remove("id");
             localStorage.clear();

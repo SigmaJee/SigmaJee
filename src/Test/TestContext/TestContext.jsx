@@ -6,6 +6,7 @@ const TestProvider = createContext();
 
 // Create provider
 export const TestContext = ({ children }) => {
+  const api = import.meta.env.VITE_API;
   const [trig, settrig] = useState(false);
   const [Attempted, setAttempted] = useState([]);
   const [Unattempted, setUnAttempted] = useState([]);
@@ -13,7 +14,7 @@ export const TestContext = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`${api}/user/get-userTest`);
+        const res = await axios.get(`${api}/get-userTest`);
         setUnAttempted(res.data?.UnAttempted);  // ✅ match new API structure
         setAttempted(res.data?.Attempted);
       } catch (error) {
