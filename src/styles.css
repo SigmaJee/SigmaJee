@@ -831,8 +831,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50vh;
-    
 
   }
 
@@ -1045,6 +1043,8 @@ body {
   overflow-y: auto;  /* allow scroll if content grows */
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+    height: 50vh;
+    
 }
 
  
