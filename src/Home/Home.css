@@ -79,7 +79,7 @@
     padding: 12px 20px;
     display: flex;
     justify-content: center;
-
+    height: 70px;
   }
 
   .hm-logo {
@@ -182,10 +182,12 @@
 /* ✅ Responsive styles for mobile view */
 @media (max-width: 768px) {
   .hm-hero {
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 20px;
-    gap: 40px;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    height: 400px;
+    padding: 10px 20px;
+    gap: 20px;
+    margin-top: 30px;
   }
 
   .hm-hero-right {
@@ -213,14 +215,14 @@
   }
 
   .hm-circle-images img {
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
   }
 }
 
 
     /* EXPLORE + REVIEWS */
-    .hm-explore-section {
+ .hm-explore-section {
   display: flex;
   justify-content: center;
   align-items: stretch;
@@ -412,9 +414,15 @@
 /* ✅ Responsive: Mobile view */
 @media (max-width: 768px) {
   .hm-tp-hero {
-    flex-direction: column;
-    padding: 40px 20px;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    padding: 10px 20px;
     gap: 40px;
+    height: 400px;
+  }
+  img{
+    height: 150px;
+    width: 150px;
   }
 
   .hm-tp-hero-right,
@@ -433,7 +441,7 @@
 }
 
     /* ─── OUR BLOGS (horizontally scrollable 4‑at‑a‑time) ─── */
-   .hm-blogs-section {
+  .hm-blogs-section {
   padding: 60px 40px;
   margin-top: 100px;
 }
@@ -506,6 +514,86 @@
   transition: width 0.1s ease;
   border-radius: 2px 2px 0 0;
 }
+@media (max-width: 768px) {
+  .hm-blogs-section {
+  padding: 10px 20px;
+  margin-top: 50px;
+}
+
+.hm-blogs-section .hm-section-heading {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* Container with scroll */
+.hm-blogs-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  position: relative;
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;    /* IE 10+ */
+}
+
+.hm-blogs-container::-webkit-scrollbar {
+  display: none;               /* Safari & Chrome */
+}
+
+/* Blog Cards Wrapper */
+.hm-exam-cards {
+  display: flex;
+  gap: 10px;
+  padding-bottom: 10px;
+  width: max-content;
+}
+
+/* Individual Blog Card */
+.hm-exam-card {
+  flex: 0 0 250px;
+  scroll-snap-align: start;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  text-align: center;
+  padding: 10px 10px;
+  transition: all 0.3s ease;
+  background-color: white;
+  width: 30px;
+}
+img{
+  width: 30px;
+};
+
+.hm-exam-card:hover {
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+}
+
+.hm-exam-card img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 15px;
+}
+
+.hm-exam-card p {
+  font-weight: 600;
+  font-size: 15px;
+  margin: 0;
+}
+
+/* Scroll progress indicator (optional for enhancement) */
+.hm-scroll-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background-color: #000;
+  width: 0%;
+  transition: width 0.1s ease;
+  border-radius: 2px 2px 0 0;
+}
+}
+
 
     /* ─── PERSONAL MENTORSHIP SECTION ─── */
     .hm-mentorship-section {
@@ -584,10 +672,16 @@
       "card2 card3";
     gap: 20px;
   }
+    img{
+    height: 100px;
 
+    width: 60px;
+   }
   .hm-mentorship-card:nth-child(1) {
     grid-area: card1;
+    height: 300px;
     width: 100%;
+    overflow-y: hidden;
   }
 
   .hm-mentorship-card:nth-child(2) {
@@ -597,6 +691,67 @@
   .hm-mentorship-card:nth-child(3) {
     grid-area: card3;
   }
+    .hm-mentorship-section {
+      padding: 60px 40px;
+      margin-top: 30px;
+    }
+
+    .hm-mentorship-section .hm-section-heading {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .hm-mentorship-card {
+      border: 1px solid #eee;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      background-color: #ffffff;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .hm-mentorship-card:hover {
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.hm-08);
+    }
+
+    .hm-mentorship-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      overflow: hidden;
+    }
+
+    .hm-mentorship-card h4 {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    .hm-mentorship-card ul {
+      padding: 0;
+      margin: 10px 0;
+    }
+
+    .hm-mentorship-card ul li {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 6px;
+    }
+
+    .hm-mentorship-card a {
+      display: inline-block;
+      margin-top: 12px;
+      color: #0b6fff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .hm-mentorship-card a:hover {
+      text-decoration: underline;
+    }
 }
 
 
@@ -674,7 +829,7 @@
       background-color: #fdfdfd;
       border-top: 1px solid #eee;
       color: #2d2f31;
-      margin-top: 150px;
+      margin-top: 50px;
     }
 
     .hm-footer-top {
