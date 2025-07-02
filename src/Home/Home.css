@@ -916,6 +916,9 @@ img{
     gap: 12px;
     padding: 16px;
   }
+  .hm-profile-icon{
+    display: none;
+  }
 
   .hm-desk-navbar-buttons {
     flex-wrap: wrap;
