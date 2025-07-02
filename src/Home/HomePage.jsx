@@ -1,35 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Home.css';
 import { useNavigate } from 'react-router-dom';
-
+import Sidebar from './HmSidebar';
 const HomePage = () => {
   const navigate = useNavigate();
+  const [show, setshow] = useState(false)
+  
   return (
     <div className="hm-pg">
+      {show && <Sidebar el={{setshow}} />}
       {/* NAVBAR */}
       <div className="hm-navbar">
         <div className="hm-logo">
           Sigma<span className="hm-logo-highlight">JEE</span>
         </div>
         <div className="hm-nav-btns">
-           <div className="hm-desk-navbar-buttons">
-          <button className="hm-desk-nav-btn">Home</button>
-          <button className="hm-desk-nav-btn" onClick={() => navigate("/test-page")}>Test Papers</button>
-          <button className="hm-desk-nav-btn">Live Lectures</button>
-          <button className="hm-desk-nav-btn">Study Material</button>
-          <button className="hm-desk-nav-btn">Classes</button>
-          <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="Profile Icon" className="hm-profile-icon" />
-        </div>
+          <div className="hm-desk-navbar-buttons">
+            <button className="hm-desk-nav-btn"onClick={() => {
+                setshow(prev => !prev)
+              }}>Home</button>
+            <button className="hm-desk-nav-btn" onClick={() => navigate("/test-page")}>Test Papers</button>
+            <button className="hm-desk-nav-btn">Live Lectures</button>
+            <button className="hm-desk-nav-btn">Study Material</button>
+            <button className="hm-desk-nav-btn">Classes</button>
+            <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="Profile Icon" className="hm-profile-icon" />
+          </div>
 
           <div className="hm-mobile-icons">
-          <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="Profile Icon" className="hm-profile-icon" />
-          <img src="https://cdn-icons-png.flaticon.com/512/56/56763.png" alt="Hamburger" className="hm-hamburger-icon" />
-        </div>
+            <div onClick={() => {
+               console.log("Clicked"); // ✅ test
+                setshow(prev => !prev)
+              }}
+             >
+              <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="Profile Icon"    className="hm-profile-icon" />
+            </div>
+
+            <img src="https://cdn-icons-png.flaticon.com/512/56/56763.png" alt="Hamburger" onClick={() => {
+              setshow(prev => !prev);
+            }} className="hm-hamburger-icon" />
+          </div>
 
         </div>
-       
+
         {/* Mobile-only icons */}
-        
+
       </div>
 
       {/* HERO SECTION */}
