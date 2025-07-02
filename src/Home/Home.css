@@ -126,11 +126,11 @@
   padding: 60px 40px;
   flex-wrap: wrap;
   gap: 10vw;
-  background: linear-gradient(
+  /* background: linear-gradient(
     to left,
     #00b3a4 0%,
     rgba(0, 179, 164, 0) 40%
-  );
+  ); */
 }
 
 .hm-hero-left {
@@ -373,11 +373,11 @@
   padding: 60px 40px;
   flex-wrap: wrap;
   gap: 8vw;
-  background: linear-gradient(
+  /* background: linear-gradient(
     to right,
     #00b3a4 0%,
     rgba(0, 179, 164, 0) 40%
-  );
+  ); */
   margin-top: 100px;
 }
 
@@ -764,11 +764,11 @@ img{
   gap: 10vw;
   flex-wrap: wrap;
   margin-top: 100px;
-  background: linear-gradient(
+  /* background: linear-gradient(
     to left,
     #00b3a4 0%,
     rgba(0, 179, 164, 0) 40%
-  );
+  ); */
 }
 
 .hm-formula-hero-left {
