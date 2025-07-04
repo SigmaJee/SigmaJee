@@ -14,8 +14,9 @@ export const TestContext = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`${api}/get-userTest`);
-        setUnAttempted(res.data?.UnAttempted);  // ✅ match new API structure
+        const user=JSON.parse(sessionStorage.getItem("user"));
+        const res = await axios.post(`${api}/get-userTest`,{user});
+        setUnAttempted(res.data?.UnAttempted);  
         setAttempted(res.data?.Attempted);
       } catch (error) {
         console.error(error);

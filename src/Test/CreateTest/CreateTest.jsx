@@ -128,7 +128,9 @@ const CreateTest = () => {
     }
     const FinalSubmit = async () => {
         try {
-            await axios.post(`${api}/edit-paper`, { Statements, Saved, Options, Answers, duration });
+            const id=sessionStorage.getItem("id");
+            const user=JSON.parse(sessionStorage.getItem("user"));
+            await axios.post(`${api}/edit-paper`, { Statements, Saved, Options, Answers, duration,user,id });
             console.log("Tp Created ");
             localStorage.clear();
             navigate("/test-page");

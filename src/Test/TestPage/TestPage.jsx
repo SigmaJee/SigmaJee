@@ -1,7 +1,7 @@
 import React from "react";
 import "./TestPage.css";
-import { useState,useRef } from "react";
-import {useNavigate} from "react-router-dom"
+import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom"
 import RightSidebar from "../../Home/HmSidebar";
 import axios from "axios";
 const TestPage = () => {
@@ -10,7 +10,7 @@ const TestPage = () => {
   const [show, setshow] = useState(false);
   const [titleErr, setTitleErr] = useState("");
   const [SubjectErr, setSubjectErr] = useState("");
-  const [showbox,setshowbox]=useState(false);
+  const [showbox, setshowbox] = useState(false);
   const Title = useRef("");
   const Subject = useRef("");
   const Submit = async () => {
@@ -30,9 +30,11 @@ const TestPage = () => {
       }, 3000);
       return;
     }
-    await axios.post(` ${api}/create-test`, { Title: title, Subject: subject },{
-      withCredentials:true
+   
+    await axios.post(` ${api}/create-test`, { Title: title, Subject: subject }, {
+      withCredentials: true
     }).then((res) => {
+      sessionStorage.setItem("id",res.data.id);
       console.log("Test Created Successfully");
       navigate("/test-create")
     }).catch((err) => {
@@ -42,19 +44,19 @@ const TestPage = () => {
   }
   return (
     <div className="tp-pg">
-      {show&&<RightSidebar el={{setshow}} />}
-       {
+      {show && <RightSidebar el={{ setshow }} />}
+      {
         showbox && <div className="tp-overlay">
           <form className="tp-dialog-box" onSubmit={(e) => { e.preventDefault(); Submit(); }} data-aos="fade-down">
             <h2>Enter Test Details</h2>
-            <input type="text" className={`tp-input-box ${titleErr?"border":"faltu"}`} placeholder="Enter title"  onChange={(e) => { Title.current = e.target.value }} />
+            <input type="text" className={`tp-input-box ${titleErr ? "border" : "faltu"}`} placeholder="Enter title" onChange={(e) => { Title.current = e.target.value }} />
             {titleErr && <p className="tp-err" data-aos="fade-right">{titleErr}</p>}
-            <input type="text" className={`tp-input-box ${SubjectErr?"border":"faltu"}`} placeholder="Enter subject"  onChange={(e) => Subject.current = e.target.value} />
+            <input type="text" className={`tp-input-box ${SubjectErr ? "border" : "faltu"}`} placeholder="Enter subject" onChange={(e) => Subject.current = e.target.value} />
             {SubjectErr && <p className="tp-err" data-aos="fade-right">{SubjectErr}</p>}
             <button className="tp-submit-btn" type='submit'>Submit</button>
             <p className="tp-or-separator">or</p>
             <div className="tp-links">
-              <a href="#" onClick={()=>{setshowbox(false)}}>Cancel</a>
+              <a href="#" onClick={() => { setshowbox(false) }}>Cancel</a>
               <span>|</span>
               <a href="#">Need Help?</a>
             </div>
@@ -68,9 +70,9 @@ const TestPage = () => {
         </div>
         <div className="hm-nav-btns">
           <div className="hm-desk-navbar-buttons">
-            <button className="hm-desk-nav-btn"onClick={() => {
-                setshow(prev => !prev)
-              }}>Home</button>
+            <button className="hm-desk-nav-btn" onClick={() => {
+              setshow(prev => !prev)
+            }}>Home</button>
             <button className="hm-desk-nav-btn" onClick={() => navigate("/test-page")}>Test Papers</button>
             <button className="hm-desk-nav-btn">Live Lectures</button>
             <button className="hm-desk-nav-btn">Study Material</button>
@@ -80,11 +82,11 @@ const TestPage = () => {
 
           <div className="hm-mobile-icons">
             <div onClick={() => {
-               console.log("Clicked"); // ✅ test
-                setshow(prev => !prev)
-              }}
-             >
-              <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="Profile Icon"    className="hm-profile-icon" />
+              console.log("Clicked"); // ✅ test
+              setshow(prev => !prev)
+            }}
+            >
+              <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="Profile Icon" className="hm-profile-icon" />
             </div>
 
             <img src="https://cdn-icons-png.flaticon.com/512/56/56763.png" alt="Hamburger" onClick={() => {
@@ -115,8 +117,8 @@ const TestPage = () => {
             <h1>Create & Share Tests</h1>
             <img src="https://cdn-icons-png.flaticon.com/512/1256/1256650.png" alt="Create" className="tp-card-image" />
             <div className="tp-card-btns">
-              <button onClick={()=>{setshowbox(true)}}>Create Test</button>
-              <button onClick={()=>{navigate("/test-created")}}>View Created</button>
+              <button onClick={() => { setshowbox(true) }}>Create Test</button>
+              <button onClick={() => { navigate("/test-created") }}>View Created</button>
             </div>
           </div>
         </div>

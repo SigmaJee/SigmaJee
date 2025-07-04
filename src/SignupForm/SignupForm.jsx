@@ -40,19 +40,14 @@ const SignupPage = ({ elements }) => {
 
         await axios.post(` ${api}/create-user`, { Email: email, Name: data.Name, Class: data.Class, Password: data.Pass }).then(async (res) => {
             setloading(true);
+            sessionStorage.setItem("user",JSON.stringify(res.data.user));
             setTimeout(() => {
                 setloading(false);
                 reset();
                 setUser(true);
                 navigate("/home", { replace: true });
             }, 3000);
-            await axios.post(` ${api}/give-user`,{Email:email}).then((res)=>{
-
-            }).catch(err=>{
-                console.log(err);
-                console.log("Err in getting user");
-                
-            })
+          
 
         }).catch((Err) => {
             console.log(Err);
@@ -60,6 +55,7 @@ const SignupPage = ({ elements }) => {
     }
     const onBack = async () => {
         const email = sessionStorage.getItem("email");
+     
         await axios.post(` ${api}/delete-user`, { Email: email }).then((res) => {
             sessionStorage.removeItem("email");
             setCanSignup(false);
