@@ -30,7 +30,7 @@ const TestPage = () => {
       }, 3000);
       return;
     }
-    await axios.post(`api/user/create-test`, { Title: title, Subject: subject },{
+    await axios.post(`${api}/create-test`, { Title: title, Subject: subject },{
             withCredentials:true
         }).then((res) => {
       console.log("Test Created Successfully");
