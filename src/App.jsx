@@ -50,10 +50,10 @@ function App() {
       {toast && <Toast elements={elements} />}
       {loading && <Loading />}
       <Routes>
-         <Route path='/test-screen' element={user?<TestScreen />:<Fullpage elements={elements} func={func} funcs={funcs}/>} />
-          <Route path='/test-page' element={user?<TestPage />:<Fullpage elements={elements} func={func} funcs={funcs}/>} />
-          <Route path='/test-create' element={user?<CreateTest />:<Fullpage elements={elements} func={func} funcs={funcs}/>} />
-          <Route path='/test-created' element={user?<CreatedTests />:<Fullpage elements={elements} func={func} funcs={funcs}/>} />
+         <Route path='/test-screen' element={user?<TestScreen elements={elements}  />:<Fullpage elements={elements} func={func} funcs={funcs}/>} />
+          <Route path='/test-page' element={user?<TestPage elements={elements} />:<Fullpage elements={elements} func={func} funcs={funcs}/>} />
+          <Route path='/test-create' element={user?<CreateTest elements={elements} />:<Fullpage elements={elements} func={func} funcs={funcs}/>} />
+          <Route path='/test-created' element={user?<CreatedTests elements={elements}  />:<Fullpage elements={elements} func={func} funcs={funcs}/>} />
         <Route path="/signup-form" element={
           canSignup ? <SignupPage elements={elements} /> :
             <>
@@ -61,9 +61,9 @@ function App() {
             </>
         } />
         <Route path="/" element={
-          user?<HomePage/>:
+          user?<HomePage elements={elements} />:
           <Fullpage elements={elements} func={func} funcs={funcs}/>} />
-        <Route path="/home" element={user ? <HomePage /> : <Fullpage elements={elements} func={func} funcs={funcs}/>} />
+        <Route path="/home" element={user ? <HomePage elements={elements}  /> : <Fullpage elements={elements} func={func} funcs={funcs}/>} />
       </Routes>
     </>
   );
