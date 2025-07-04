@@ -3,7 +3,7 @@ import { createContext } from 'react';
 import { useContext } from 'react';
 const AuthProvider = createContext();
 export const CanSignupContext = ({ children }) => {
-   const isValid = sessionStorage.getItem("isvalid");
+   const isValid = localStorage.getItem("isvalid");
    const [canSignup, setCanSignup] = useState(isValid ? true : false);
    return (
       <AuthProvider.Provider value={{ canSignup, setCanSignup }}>

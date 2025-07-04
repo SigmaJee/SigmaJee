@@ -36,7 +36,7 @@ const SignupPage = ({ elements }) => {
     }
     const api = import.meta.env.VITE_API;
     const onSubmit = async (data) => {
-        const email = sessionStorage.getItem("email");
+        const email = localStorage.getItem("email");
 
         await axios.post(`${api}/create-user`, { Email: email, Name: data.Name, Class: data.Class, Password: data.Pass }).then(async (res) => {
             setloading(true);
@@ -44,7 +44,11 @@ const SignupPage = ({ elements }) => {
                 setloading(false);
                 reset();
                 setUser(true);
-                navigate("/home", { replace: true });
+                localStorage.setItem("userId",res.data.userId);
+                setTimeout(() => {
+                    navigate("/home", { replace: true });
+                }, 3000);
+                
             }, 3000);
             await axios.post(`${api}/give-user`,{Email:email},{
             withCredentials:true
@@ -61,9 +65,9 @@ const SignupPage = ({ elements }) => {
         })
     }
     const onBack = async () => {
-        const email = sessionStorage.getItem("email");
+        const email = localStorage.getItem("email");
         await axios.post(`${api}/delete-user`, { Email: email }).then((res) => {
-            sessionStorage.removeItem("email");
+            localStorage.removeItem("email");
             setCanSignup(false);
             setUser(false);
             navigate("/", { replace: true });

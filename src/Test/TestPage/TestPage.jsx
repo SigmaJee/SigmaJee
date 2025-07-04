@@ -34,6 +34,9 @@ const TestPage = () => {
             withCredentials:true
         }).then((res) => {
       console.log("Test Created Successfully");
+      console.log(res.data.id);
+      localStorage.setItem("testId",res.data.id);
+      
       navigate("/test-create")
     }).catch((err) => {
       console.log("Failed to create Test ");

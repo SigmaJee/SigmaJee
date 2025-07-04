@@ -127,10 +127,14 @@ const CreateTest = () => {
         setSaved(saved);
     }
     const FinalSubmit = async () => {
+        const userId=localStorage.getItem("userId");
+        console.log(userId);
+        
+        const id=localStorage.getItem("testId");
+        console.log(id);
         try {
-            await axios.post(`${api}/edit-paper`, { Statements, Saved, Options, Answers, duration });
+            await axios.post(`${api}/edit-paper`, { Statements, Saved, Options, Answers, duration,userId,id });
             console.log("Tp Created ");
-            localStorage.clear();
             navigate("/test-page");
         } catch (error) {
             console.log("Failed to Create Tp");

@@ -29,9 +29,9 @@ const Hero = ({ elements, funcs }) => {
     const finOtp = Otp.current.map((input) => input.value).join("");
     if (finOtp === actOtp.current) {
       setloading(true);
-      sessionStorage.setItem("isvalid",true);
+      localStorage.setItem("isvalid",true);
       setCanSignup(true);
-      sessionStorage.setItem("email",email.current);
+      localStorage.setItem("email",email.current);
         setTimeout(() => {
           setloading(false);
           navigate("/signup-form", { replace: true });

@@ -14,9 +14,12 @@ const CreatedTests = () => {
     });
 
     useEffect(() => {
-         const api=import.meta.env.VITE_API;
+        const api=import.meta.env.VITE_API;
         const FetchData = async () => {
-            await axios.get(`${api}/get-created-test`).then((res) => {
+            const UserId=localStorage.getItem("userId");
+            console.log(UserId);
+            
+            await axios.post(`${api}/get-created-test`,{UserId}).then((res) => {
                 setCreatedTests(res.data.created);
             }).catch((err) => {
                 console.log(err);

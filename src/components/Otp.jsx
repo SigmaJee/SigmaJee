@@ -60,19 +60,22 @@ const OtpVerification = ({ funcs, elements }) => {
                 setloading(false);
                 navigate("/home", { replace: true });
             }, 3000);
-            
-            localStorage.setItem("email", email.current);
-            await axios.post(`${api}/give-user`,{Email:email.current},{
-            withCredentials:true
-        }).then((res)=>{
-                   console.log("Got user");  
-            }).catch(err=>{
-                console.log(err);
-                console.log("Err in getting user");
-                
-            })
 
-            
+            localStorage.setItem("email", email.current);
+            await axios.post(`/${api}/give-user`, { Email: email.current }, {
+                withCredentials: true
+            })
+                .then((res) => {
+                    console.log("API Response:", res.data);
+                    console.log("API user:", res.data.userId);
+                    localStorage.setItem("userId",res.data.userId);
+                })
+                .catch(err => {
+                    console.log(err);
+                    console.log("Err in getting user");
+                });
+
+
         }
         else {
             setToast("Incorrect OTP");

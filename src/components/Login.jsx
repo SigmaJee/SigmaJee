@@ -62,11 +62,12 @@ const Login = ({ funcs, elements }) => {
             setType("success");
             setloading(true);
             setUser(true);
+            localStorage.setItem("userId",res.data.userId)
             setTimeout(() => {
                 setloading(false);
                 navigate("/home", { replace: true });
             }, 3000);
-             sessionStorage.setItem("email",email.current);
+             localStorage.setItem("email",email.current);
             
         }).catch((err) => {
             setPasserr(err.response.data.message);

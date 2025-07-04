@@ -66,8 +66,8 @@ const Signup = ({ funcs, elements }) => {
         const finOtp = otpRef.current.map((input) => input.value).join("");
         if (finOtp === actOtpRef.current) {
             setloading(true);
-            sessionStorage.setItem("isvalid",true);
-            sessionStorage.setItem("email",email);
+            localStorage.setItem("isvalid",true);
+            localStorage.setItem("email",email);
             setCanSignup(true);
             setTimeout(() => {
                 setloading(false);

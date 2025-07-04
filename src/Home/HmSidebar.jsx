@@ -9,7 +9,7 @@ const RightSidebar = ({ el }) => {
   const { setshow } = el;
   const Logout = () => {
     localStorage.clear();
-    sessionStorage.clear();
+    localStorage.clear();
     Object.keys(Cookies.get()).forEach(cookieName => {
       Cookies.remove(cookieName);
     });
