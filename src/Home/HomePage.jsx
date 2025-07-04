@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './Home.css';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from './HmSidebar';
-const HomePage = () => {
+const HomePage = ({elements}) => {
   const navigate = useNavigate();
   const [show, setshow] = useState(false)
-  
+  const {setloading}=elements;
   return (
     <div className="hm-pg">
       {show && <Sidebar el={{setshow}} />}
@@ -108,7 +108,12 @@ const HomePage = () => {
             Get full-length practice papers, mock tests and timed challenges curated by experts.
           </p>
           <button className="hm-cta-btn" onClick={() => {
-            navigate("/test-page");
+            setloading(true);
+            setTimeout(() => {
+              setloading(false);
+              navigate("/test-page");
+            }, 3000);
+            
           }}>Get Started</button>
         </div>
         <div className="hm-tp-hero-right">

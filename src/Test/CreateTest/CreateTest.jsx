@@ -3,7 +3,8 @@ import './CreateTest.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Cookies from "js-cookie"
-const CreateTest = () => {
+const CreateTest = ({ elements }) => {
+    const { setloading } = elements;
     const navigate = useNavigate();
     const api = import.meta.env.VITE_API;
     const safeJSONParse = (key, fallback) => {
@@ -127,15 +128,20 @@ const CreateTest = () => {
         setSaved(saved);
     }
     const FinalSubmit = async () => {
-        const userId=localStorage.getItem("userId");
+        const userId = localStorage.getItem("userId");
         console.log(userId);
-        
-        const id=localStorage.getItem("testId");
+
+        const id = localStorage.getItem("testId");
         console.log(id);
         try {
-            await axios.post(`${api}/edit-paper`, { Statements, Saved, Options, Answers, duration,userId,id });
+            await axios.post(`${api}/edit-paper`, { Statements, Saved, Options, Answers, duration, userId, id });
             console.log("Tp Created ");
-            navigate("/test-page");
+            setloading(true);
+            setTimeout(() => {
+                setloading(false);
+                navigate("/test-page");
+            }, 3000);
+
         } catch (error) {
             console.log("Failed to Create Tp");
             console.log(error);
@@ -144,41 +150,41 @@ const CreateTest = () => {
 
     return (
         <div>
-         <div className="hm-navbar">
-        <div className="hm-logo">
-          Sigma<span className="hm-logo-highlight">JEE</span>
-        </div>
-        <div className="hm-nav-btns">
-          <div className="hm-desk-navbar-buttons">
-            <button className="hm-desk-nav-btn"onClick={() => {
-                setshow(prev => !prev)
-              }}>Home</button>
-            <button className="hm-desk-nav-btn" onClick={() => navigate("/test-page")}>Test Papers</button>
-            <button className="hm-desk-nav-btn">Live Lectures</button>
-            <button className="hm-desk-nav-btn">Study Material</button>
-            <button className="hm-desk-nav-btn">Classes</button>
-            <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="Profile Icon" className="hm-profile-icon" />
-          </div>
+            <div className="hm-navbar">
+                <div className="hm-logo">
+                    Sigma<span className="hm-logo-highlight">JEE</span>
+                </div>
+                <div className="hm-nav-btns">
+                    <div className="hm-desk-navbar-buttons">
+                        <button className="hm-desk-nav-btn" onClick={() => {
+                            setshow(prev => !prev)
+                        }}>Home</button>
+                        <button className="hm-desk-nav-btn" onClick={() => navigate("/test-page")}>Test Papers</button>
+                        <button className="hm-desk-nav-btn">Live Lectures</button>
+                        <button className="hm-desk-nav-btn">Study Material</button>
+                        <button className="hm-desk-nav-btn">Classes</button>
+                        <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="Profile Icon" className="hm-profile-icon" />
+                    </div>
 
-          <div className="hm-mobile-icons">
-            <div onClick={() => {
-               console.log("Clicked"); // ✅ test
-                setshow(prev => !prev)
-              }}
-             >
-              <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="Profile Icon"    className="hm-profile-icon" />
+                    <div className="hm-mobile-icons">
+                        <div onClick={() => {
+                            console.log("Clicked"); // ✅ test
+                            setshow(prev => !prev)
+                        }}
+                        >
+                            <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="Profile Icon" className="hm-profile-icon" />
+                        </div>
+
+                        <img src="https://cdn-icons-png.flaticon.com/512/56/56763.png" alt="Hamburger" onClick={() => {
+                            setshow(prev => !prev);
+                        }} className="hm-hamburger-icon" />
+                    </div>
+
+                </div>
+
+                {/* Mobile-only icons */}
+
             </div>
-
-            <img src="https://cdn-icons-png.flaticon.com/512/56/56763.png" alt="Hamburger" onClick={() => {
-              setshow(prev => !prev);
-            }} className="hm-hamburger-icon" />
-          </div>
-
-        </div>
-
-        {/* Mobile-only icons */}
-
-      </div>
             <div className="ct-container">
                 <div className="ct-left-panel">
                     <div className="ct-form-group">
