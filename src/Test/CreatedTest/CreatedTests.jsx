@@ -3,7 +3,7 @@ import './CreatedTests.css';
 import axios from 'axios';
 import Cookies from "js-cookie"
 const CreatedTests = () => {
-   
+   const api=import.meta.env.VITE_API;
     const [CreatedTests, setCreatedTests] = useState(() => {
         const stored = localStorage.getItem("created");
         try {
@@ -14,7 +14,7 @@ const CreatedTests = () => {
     });
 
     useEffect(() => {
-        const api=import.meta.env.VITE_API;
+        
         const FetchData = async () => {
             const UserId=localStorage.getItem("userId");
             console.log(UserId);
