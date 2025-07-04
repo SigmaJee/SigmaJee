@@ -5,35 +5,35 @@ import axios from 'axios';
 const TestScreen = () => {
   const api = import.meta.env.VITE_API;
   const [Statements, setStatements] = useState(() => {
-    const stored = localStorage.getItem("statements");
+    const stored = localStorage.getItem("statement");
     return stored ? stored : Array(50).fill("");
   });
   const [Options, setOptions] = useState(() => {
-    const stored = localStorage.getItem("options");
+    const stored = localStorage.getItem("option");
     return stored ? stored : Array(50).fill(["", "", "", ""]);
   });
   const [dis, setdis] = useState(() => {
-    const stored = localStorage.getItem("dis");
+    const stored = localStorage.getItem("di");
     return stored ? stored : Array(50).fill(false);
   });
   const [len, setlen] = useState(() => {
-    const stored = localStorage.getItem("len");
+    const stored = localStorage.getItem("leng");
     return stored ? stored : 1
   });
   const [PgNum, setPageNum] = useState(() => {
-    const stored = localStorage.getItem("pg");
+    const stored = localStorage.getItem("page");
     return stored ? stored : 1
   })
   const [ans, SetAns] = useState(() => {
-    const stored = localStorage.getItem("ans");
+    const stored = localStorage.getItem("answ");
     return stored ? stored : Array(50).fill(0);
   })
   const [Selected, setSelected] = useState(() => {
-    const stored = localStorage.getItem("selected");
+    const stored = localStorage.getItem("selecte");
     return stored ? stored : Array(50).fill(0);
   })
   const [Saved, setSaved] = useState(() => {
-    const stored = localStorage.getItem("saved");
+    const stored = localStorage.getItem("save");
     return stored ? stored : Array(50).fill(false);
   })
   useEffect(() => {
@@ -55,28 +55,28 @@ const TestScreen = () => {
     fetchPaper();
   }, [])
   useEffect(() => {
-    localStorage.setItem("ans", ans);
+    localStorage.setItem("answ", ans);
   }, [ans])
   useEffect(() => {
-    localStorage.setItem("dis", dis);
+    localStorage.setItem("di", dis);
   }, [dis])
   useEffect(() => {
-    localStorage.setItem("statements", Statements);
+    localStorage.setItem("statement", Statements);
   }, [Statements])
   useEffect(() => {
-    localStorage.setItem("options", Options);
+    localStorage.setItem("option", Options);
   }, [Options])
   useEffect(() => {
-    localStorage.setItem("pg", PgNum);
+    localStorage.setItem("page", PgNum);
   }, [PgNum])
   useEffect(() => {
-    localStorage.setItem("selected", Selected);
+    localStorage.setItem("selecte", Selected);
   }, [Selected])
   useEffect(() => {
-    localStorage.setItem("saved", Saved);
+    localStorage.setItem("save", Saved);
   }, [Saved])
   useEffect(() => {
-    localStorage.setItem("len", len);
+    localStorage.setItem("leng", len);
   }, [len])
   const OnSave = (qindex) => {
     if (!Selected[qindex]) {
