@@ -70,7 +70,7 @@ const CreatedTests = () => {
                                 <div>Duration: {test.Duration}</div>
                                 <div className="ctd-nav-btn" onClick={() => { downloadPDF(test) }}>Download PDF</div>
                                 <div className="ctd-nav-btn" onClick={async () => {
-                                    const url = `http://localhost:5173/attempt-test?test-id=${test._id}`;
+                                    const url = `https://sigmajeeoff.netlify.app/test-screen?test-id=${test._id}`;
                                     const message = `Someone has set a test paper for you on SigmaJEE.\nClick the link to attempt it:\n${url}`;
                                     const encoded=encodeURIComponent(message);
                                     window.open(`https://wa.me?text=${encoded}`,"_blank");
