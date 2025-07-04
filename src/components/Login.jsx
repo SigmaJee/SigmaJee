@@ -41,7 +41,7 @@ const Login = ({ funcs, elements }) => {
             }, 2000);
             return;
         }
-        axios.post(`api/user/find-user`, { Email: email }).then((res) => {
+        axios.post(`${api}/find-user`, { Email: email }).then((res) => {
             ShowPass(true);
             setDisable(true);
             return;
@@ -55,7 +55,7 @@ const Login = ({ funcs, elements }) => {
     }
     const onsubmit = async () => {
        
-        await axios.post(` api/user/login`, { email: email.current, pass: Password.current }).then((res) => {
+        await axios.post(` ${api}/login`, { email: email.current, pass: Password.current }).then((res) => {
             setToast("Success");
             setType("success");
             setloading(true);

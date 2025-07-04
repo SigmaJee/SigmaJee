@@ -3,6 +3,7 @@ import './CreatedTests.css';
 import axios from 'axios';
 import Cookies from "js-cookie"
 const CreatedTests = () => {
+   
     const [CreatedTests, setCreatedTests] = useState(() => {
         const stored = localStorage.getItem("created");
         try {
@@ -13,8 +14,9 @@ const CreatedTests = () => {
     });
 
     useEffect(() => {
+         const api=import.meta.env.VITE_API;
         const FetchData = async () => {
-            await axios.get("api/user/get-created-test").then((res) => {
+            await axios.get(`${api}/get-created-test`).then((res) => {
                 setCreatedTests(res.data.created);
             }).catch((err) => {
                 console.log(err);
@@ -27,7 +29,7 @@ const CreatedTests = () => {
     }, [CreatedTests]);
 
     const downloadPDF = async (paperData) => {
-        const response = await axios.post("api/user/get-pdf", { paperData }, {
+        const response = await axios.post(`${api}/get-pdf`, { paperData }, {
             responseType: "blob",
         });
 

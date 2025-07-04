@@ -7,7 +7,8 @@ const TestPDFDownload = ({test}) => {
 
   useEffect(() => {
     // Fetch test data
-    axios.get("/api/user/get-pdf",{test}) // ← replace with your endpoint
+    const api=import.meta.env.VITE_API;
+    axios.get(`/${api}/get-pdf`,{test}) // ← replace with your endpoint
       .then(res => setPaper(res.data))
       .catch(err => console.log("Fetch error", err));
   }, []);
