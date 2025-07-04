@@ -2,19 +2,30 @@ import React from 'react';
 import './Sidebar.css';
 import { Home, BookOpen, Users, Settings, HelpCircle, LogOut, X } from 'lucide-react';
 import AOS from "aos"
-const RightSidebar = ({el}) => {
-    const {setshow}=el;
+import Cookies from "js-cookie"
+import { useNavigate } from 'react-router-dom';
+const RightSidebar = ({ el }) => {
+  const navigate = useNavigate();
+  const { setshow } = el;
+  const Logout = () => {
+    localStorage.clear();
+    sessionStorage.clear();
+    Object.keys(Cookies.get()).forEach(cookieName => {
+      Cookies.remove(cookieName);
+    });
+    navigate("/signup-form");
+  }
   return (
     <>
       {/* Overlay */}
-      <div className="sidebar-overlay" onClick={()=>{setshow(false)}}></div>
+      <div className="sidebar-overlay" onClick={() => { setshow(false) }}></div>
 
       {/* Sidebar */}
       <div className="right-sidebar" data-aos="fade-left">
         <div className="sidebar-content">
 
           {/* Close Button */}
-          <div className="sidebar-close"onClick={()=>{setshow(false)}}>
+          <div className="sidebar-close" onClick={() => { setshow(false) }}>
             <X size={24} />
           </div>
 
@@ -40,10 +51,10 @@ const RightSidebar = ({el}) => {
 
           {/* Logout */}
           <div className="logout-section">
-            <button><LogOut size={18} /> Logout</button>
-          </div>
+            <button onClick={() => { Logout() }}><LogOut size={18} /> Logout</button>
         </div>
       </div>
+    </div >
     </>
   );
 };

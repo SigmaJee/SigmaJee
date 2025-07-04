@@ -37,9 +37,12 @@ const TestScreen = () => {
     return stored ? stored : Array(50).fill(false);
   })
   useEffect(() => {
-    const tpid = Cookies.get("testid");
+    const url= new URL(window.location.href);
+    const testId=url.searchParams.get("test-id");
+    const tpid = Cookies.get("testid")||testId;
+    if(!tpid)return;
     const fetchPaper = async () => {
-      axios.post(` ${api}/get-test`, { id: tpid }).then((res) => {
+      axios.post(`api/user/get-test`, { id: tpid }).then((res) => {
         setStatements(res.data.Statements);
         setOptions(res.data.Options);
         setlen(res.data.len);
@@ -98,52 +101,52 @@ const TestScreen = () => {
   return (
     <div>
       {/* Navbar */}
-      <header className="ct-navbar">
-        <div className="ct-logo">
-          Sigma<span className="ct-highlight">JEE</span>
+      <header className="tc-navbar">
+        <div className="tc-logo">
+          Sigma<span className="tc-highlight">JEE</span>
         </div>
-        <div className="ct-nav-buttons">
-          <button className="ct-nav-btn">Home</button>
-          <button className="ct-nav-btn">Material</button>
-          <button className="ct-nav-btn">Lectures</button>
-          <button className="ct-nav-btn">Mentorship</button>
+        <div className="tc-nav-buttons">
+          <button className="tc-nav-btn">Home</button>
+          <button className="tc-nav-btn">Material</button>
+          <button className="tc-nav-btn">Lectures</button>
+          <button className="tc-nav-btn">Mentorship</button>
         </div>
       </header>
 
       {/* Main Container */}
-      <div className="ct-container">
+      <div className="tc-container">
 
         {/* Left Panel */}
-        <div className="ct-left-panel">
-          <div className="ct-form-group">
+        <div className="tc-left-panel">
+          <div className="tc-form-group">
             <button style={{ width: '100%' }}>Next</button>
           </div>
 
-          <div className="ct-questions">
+          <div className="tc-questions">
             {Array.from({ length: 50 }).map((_, qindex) => (
-              <div className={`ct-question-boxes display }`} key={qindex}>
+              <div className={`tc-question-boxes display }`} key={qindex}>
                 {qindex + 1 > len ? "N" : qindex + 1}
               </div>
             ))}
           </div>
 
-          <div className="ct-form-group">
+          <div className="tc-form-group">
             <button style={{ width: '100%' }}>Submit Test</button>
           </div>
         </div>
 
         {/* Right Panel */}
-        <div className="ct-right-panel">
+        <div className="tc-right-panel">
           {/* Question Cards */}
-          <div className="ct-question-card">
-            <div className="ct-question-num">Q 1</div>
-            <div className="ct-statement">
+          <div className="tc-question-card">
+            <div className="tc-question-num">Q 1</div>
+            <div className="tc-statement">
               {Statements[PgNum - 1]}
             </div>
 
             {['A', 'B', 'C', 'D'].map((opt, index) => (
-              <div key={index} className="ct-option-row">
-                <div className={`ct-options ${Selected[PgNum - 1] === (index + 1) ? "green" : "faltu"} `} onClick={() => {
+              <div key={index} className="tc-option-row">
+                <div className={`tc-options ${Selected[PgNum - 1] === (index + 1) ? "green" : "faltu"} `} onClick={() => {
                   if (dis[index]) return;
                   const selected = [...Selected];
                   selected[PgNum - 1] = index + 1;

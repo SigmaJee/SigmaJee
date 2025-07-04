@@ -16,6 +16,7 @@ import TestPage from "./Test/TestPage/TestPage.jsx";
 import Untest from "./Test/UnattTest/Untest.jsx";
 import TestScreen from "./Test/Screen/TestScreen.jsx";
 import Attest from "./Test/AttemptedTest/Attempted.jsx";
+import CreatedTests from "./Test/CreatedTest/CreatedTests.jsx";
 function App() {
    const location = useLocation(); 
   useEffect(() => {
@@ -51,12 +52,12 @@ function App() {
       {toast && <Toast elements={elements} />}
       {loading && <Loading />}
       <Routes>
-         <Route path='/test-screen' element={user?<TestScreen />:<Fullpage elements={elements} func={func} funcs={funcs}/>} />
          <Route path='/att-test' element={user?<Attest />:<Fullpage elements={elements} func={func} funcs={funcs}/>} />
          <Route path='/test-screen' element={user?<TestScreen />:<Fullpage elements={elements} func={func} funcs={funcs}/>} />
          <Route path='/untest' element={user?<Untest />:<Fullpage elements={elements} func={func} funcs={funcs}/>} />
           <Route path='/test-page' element={user?<TestPage />:<Fullpage elements={elements} func={func} funcs={funcs}/>} />
           <Route path='/test-create' element={user?<CreateTest />:<Fullpage elements={elements} func={func} funcs={funcs}/>} />
+          <Route path='/test-created' element={user?<CreatedTests />:<Fullpage elements={elements} func={func} funcs={funcs}/>} />
         <Route path="/signup-form" element={
           canSignup ? <SignupPage elements={elements} /> :
             <>

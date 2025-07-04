@@ -11,7 +11,7 @@ const Untest = () => {
     const Attempt = (testid) => {
         console.log(testid);
         
-        axios.post(`${api}/attempt`, { testid },{ withCredentials: true }).then((res) => {
+        axios.post(`api/user/attempt`, { testid },{ withCredentials: true }).then((res) => {
             console.log("Marked as Attempted");
             settrig(prev => !prev);
             navigate("/test-screen");

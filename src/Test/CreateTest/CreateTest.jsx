@@ -128,9 +128,8 @@ const CreateTest = () => {
     }
     const FinalSubmit = async () => {
         try {
-            await axios.post(` ${api}/edit-paper`, { Statements, Saved, Options, Answers, duration });
+            await axios.post(` api/user/edit-paper`, { Statements, Saved, Options, Answers, duration });
             console.log("Tp Created ");
-            Cookies.remove("id");
             localStorage.clear();
             navigate("/test-page");
         } catch (error) {
@@ -141,15 +140,41 @@ const CreateTest = () => {
 
     return (
         <div>
-            <header className="ct-navbar">
-                <div className="ct-logo">Sigma<span className="ct-highlight">JEE</span></div>
-                <div className="ct-nav-buttons">
-                    <button className="ct-nav-btn">Home</button>
-                    <button className="ct-nav-btn">Material</button>
-                    <button className="ct-nav-btn">Lectures</button>
-                    <button className="ct-nav-btn">Mentorship</button>
-                </div>
-            </header>
+         <div className="hm-navbar">
+        <div className="hm-logo">
+          Sigma<span className="hm-logo-highlight">JEE</span>
+        </div>
+        <div className="hm-nav-btns">
+          <div className="hm-desk-navbar-buttons">
+            <button className="hm-desk-nav-btn"onClick={() => {
+                setshow(prev => !prev)
+              }}>Home</button>
+            <button className="hm-desk-nav-btn" onClick={() => navigate("/test-page")}>Test Papers</button>
+            <button className="hm-desk-nav-btn">Live Lectures</button>
+            <button className="hm-desk-nav-btn">Study Material</button>
+            <button className="hm-desk-nav-btn">Classes</button>
+            <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="Profile Icon" className="hm-profile-icon" />
+          </div>
+
+          <div className="hm-mobile-icons">
+            <div onClick={() => {
+               console.log("Clicked"); // ✅ test
+                setshow(prev => !prev)
+              }}
+             >
+              <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="Profile Icon"    className="hm-profile-icon" />
+            </div>
+
+            <img src="https://cdn-icons-png.flaticon.com/512/56/56763.png" alt="Hamburger" onClick={() => {
+              setshow(prev => !prev);
+            }} className="hm-hamburger-icon" />
+          </div>
+
+        </div>
+
+        {/* Mobile-only icons */}
+
+      </div>
             <div className="ct-container">
                 <div className="ct-left-panel">
                     <div className="ct-form-group">

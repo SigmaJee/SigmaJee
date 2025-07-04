@@ -1,5 +1,5 @@
 
-.ct-navbar {
+.tc-navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,22 +9,22 @@
   background-color: #ffffff;
 }
 
-.ct-logo {
+.tc-logo {
   font-size: 32px;
   font-weight: bold;
   color: #111;
 }
 
-.ct-highlight {
+.tc-highlight {
   color: #00bfa5;
 }
 
-.ct-nav-buttons {
+.tc-nav-buttons {
   display: flex;
   gap: 20px;
 }
 
-.ct-nav-btn {
+.tc-nav-btn {
   border: none;
   font-size: 12px;
   font-weight: 600;
@@ -36,12 +36,12 @@
   transition: background-color 0.2s;
 }
 
-.ct-container {
+.tc-container {
   display: flex;
   height: calc(100vh - 100px);
 }
 
-.ct-left-panel {
+.tc-left-panel {
   width: 200px;
   background: #ffffff;
   box-shadow: 2px 0 6px rgba(0, 0, 0, 0.05);
@@ -52,13 +52,13 @@
   padding: 20px;
 }
 
-.ct-form-group {
+.tc-form-group {
   width: 100%;
   margin-bottom: 30px;
   text-align: center;
 }
 
-.ct-form-group input {
+.tc-form-group input {
   width: 100%;
   max-width: 100%;
   padding: 10px;
@@ -67,7 +67,7 @@
   margin-top: 8px;
 }
 
-.ct-form-group button {
+.tc-form-group button {
   margin-top: 10px;
   margin-right: 10px;
   padding: 8px 16px;
@@ -78,14 +78,14 @@
   cursor: pointer;
 }
 
-.ct-right-panel {
+.tc-right-panel {
   flex: 1;
   overflow-y: hidden;
   padding: 30px;
   background: #f7f8fa;
 }
 
-.ct-question-card {
+.tc-question-card {
   background: white;
   padding: 20px;
   margin-bottom: 20px;
@@ -93,13 +93,13 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-.ct-question-num {
+.tc-question-num {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 12px;
 }
 
-.ct-question-card textarea {
+.tc-question-card textarea {
   width: 100%;
   max-width: 100;
   padding: 10px;
@@ -110,13 +110,13 @@
   height: 280px;
 }
 
-.ct-option-row {
+.tc-option-row {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
 }
 
-.ct-option-row input[type="text"] {
+.tc-option-row input[type="text"] {
   flex: 1;
   max-width: 100%;
   padding: 10px;
@@ -124,7 +124,7 @@
   border: 1px solid #ccc;
 }
 
-.ct-custom-checkbox {
+.tc-custom-checkbox {
   width: 20px;
   height: 20px;
   border-radius: 4px;
@@ -136,7 +136,7 @@
   background-color: transparent;
 }
 
-.ct-custom-checkbox input[type="checkbox"] {
+.tc-custom-checkbox input[type="checkbox"] {
   opacity: 0;
   position: absolute;
   cursor: pointer;
@@ -148,7 +148,7 @@
   z-index: 2;
 }
 
-.ct-custom-checkbox span {
+.tc-custom-checkbox span {
   display: block;
   width: 100%;
   height: 100%;
@@ -160,11 +160,11 @@
   z-index: 1;
 }
 
-.ct-custom-checkbox input[type="checkbox"]:checked + span {
+.tc-custom-checkbox input[type="checkbox"]:checked + span {
   background: #2d2d2d;
 }
 
-.ct-question-card button {
+.tc-question-card button {
   margin-top: 10px;
   margin-right: 10px;
   padding: 8px 16px;
@@ -174,7 +174,7 @@
   color: white;
   cursor: pointer;
 }
-.ct-simple-box {
+.tc-simple-box {
   width: 20px;
   height: 20px;
   border-radius: 4px;
@@ -183,10 +183,10 @@
   background-color: transparent;
 }
 
-.ct-grey{
+.tc-grey{
     background-color: #000;
 }
-.ct-questions{
+.tc-questions{
     height: 300px;
     width: 100%;
     background-color: #000;
@@ -196,7 +196,7 @@
     grid-template-columns: repeat(5,0.2fr);
 gap: 0.5px;
 }
-.ct-question-boxes{
+.tc-question-boxes{
     background-color: #ffffff;
     border: 0.3px solid black;
     border-radius: 20%;
@@ -204,10 +204,10 @@ gap: 0.5px;
     justify-content: center;
     align-items: center;
 }
-.ct-green{
+.tc-green{
     background-color: #00bfa5;
 }
-.ct-statement{
+.tc-statement{
     height: 280px;
     width: 97%;
     border: 1px solid black;
@@ -215,7 +215,7 @@ gap: 0.5px;
     border-radius: 10px;
     margin-left: 20px;
 }
-.ct-options{
+.tc-options{
     height: 40px;
     width: 97%;
     border: 1px solid black;
