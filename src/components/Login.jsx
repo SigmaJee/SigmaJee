@@ -12,7 +12,7 @@ const Login = ({ funcs, elements }) => {
     const navigate = useNavigate();
     const { setisSignup, setisLogin } = funcs;
     const { handleSubmit, reset } = useForm();
-    const { toast, type, onClose, setToast, setType, setloading } = elements;
+    const { toast, type, onClose, setToast, setType,setloading } = elements;
     const [Emailerr, setEmailerr] = useState("");
     const [Passerr, setPasserr] = useState("");
     const [Pass, ShowPass] = useState(false);
@@ -21,7 +21,7 @@ const Login = ({ funcs, elements }) => {
     const [ischecked, setisChecked] = useState(false);
     const Password = useRef("");
     const { setUser } = useAuth();
-    const api = import.meta.env.VITE_API;
+    const api=import.meta.env.VITE_API;
     const signup = () => {
         setisLogin(false);
         setisSignup(true);
@@ -54,10 +54,8 @@ const Login = ({ funcs, elements }) => {
         })
     }
     const onsubmit = async () => {
-
-        await axios.post(` ${api}/login`, { email: email.current, pass: Password.current }, {
-            withCredentials: true,
-        }).then((res) => {
+       
+        await axios.post(`${api}/login`, { email: email.current, pass: Password.current }).then((res) => {
             setToast("Success");
             setType("success");
             setloading(true);
@@ -66,9 +64,8 @@ const Login = ({ funcs, elements }) => {
                 setloading(false);
                 navigate("/home", { replace: true });
             }, 3000);
-            sessionStorage.setItem("user", JSON.stringify(res.data.user));
-            sessionStorage.setItem("email", email.current);
-
+             sessionStorage.setItem("email",email.current);
+            
         }).catch((err) => {
             setPasserr(err.response.data.message);
             setTimeout(() => {
@@ -116,7 +113,7 @@ const Login = ({ funcs, elements }) => {
                     type={ischecked ? "text" : "password"}
                     className="login-input"
                     placeholder="Enter your password"
-                    style={{ border: `1px solid ${Passerr ? "red" : "black"}` }}
+                     style={{ border: `1px solid ${Passerr ? "red" : "black"}` }}
                     onChange={(e) => { Password.current = e.target.value }}
                 />}
                 {Passerr && <span data-aos="fade-right" style={{ textAlign: 'center', color: "red" }}>{Passerr}</span>}
