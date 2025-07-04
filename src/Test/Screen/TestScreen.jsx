@@ -42,7 +42,7 @@ const TestScreen = () => {
     const tpid = Cookies.get("testid")||testId;
     if(!tpid)return;
     const fetchPaper = async () => {
-      axios.post(`${api}/get-test`, { id: tpid }).then((res) => {
+      axios.post(`api/user/get-test`, { id: tpid }).then((res) => {
         setStatements(res.data.Statements);
         setOptions(res.data.Options);
         setlen(res.data.len);
