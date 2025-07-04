@@ -35,7 +35,7 @@ const Hero = ({ elements, funcs }) => {
         setTimeout(() => {
           setloading(false);
           navigate("/signup-form", { replace: true });
-        }, 3000);
+        }, 1500);
          
     
       return;
@@ -47,7 +47,7 @@ const Hero = ({ elements, funcs }) => {
 
       setTimeout(() => {
         setToast("");
-      }, 3000);
+      }, 1500);
       return;
     }
   }
@@ -56,14 +56,14 @@ const Hero = ({ elements, funcs }) => {
       setEmailerr("Email cannot be empty");
       setTimeout(() => {
         setEmailerr("");
-      }, 3000);
+      }, 1500);
       return;
     }
     if (!validator.isEmail(email)) {
       setEmailerr("Enter a valid Email");
       setTimeout(() => {
         setEmailerr("");
-      }, 3000);
+      }, 1500);
       return;
     }
 
@@ -77,7 +77,7 @@ const Hero = ({ elements, funcs }) => {
       setEmailerr(err.response.data.message + " Go to Login");
       setTimeout(() => {
         setEmailerr("");
-      }, 3000);
+      }, 1500);
 
     })
   }

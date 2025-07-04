@@ -21,14 +21,14 @@ const TestPage = ({ elements }) => {
       setTitleErr("Title cannot be empty");
       setTimeout(() => {
         setTitleErr("");
-      }, 3000);
+      }, 1500);
       return;
     }
     if (subject === "") {
       setSubjectErr("Subject cannot be empty");
       setTimeout(() => {
         setSubjectErr("");
-      }, 3000);
+      }, 1500);
       return;
     }
     await axios.post(`${api}/create-test`, { Title: title, Subject: subject }, {
@@ -41,7 +41,7 @@ const TestPage = ({ elements }) => {
       setTimeout(() => {
         setloading(false);
         navigate("/test-create")
-      }, 3000);
+      }, 1500);
 
     }).catch((err) => {
       console.log("Failed to create Test ");
@@ -129,7 +129,7 @@ const TestPage = ({ elements }) => {
                 setTimeout(() => {
                   setloading(false);
                   navigate("/test-created")
-                }, 3000);
+                }, 1500);
               }}>View Created</button>
             </div>
           </div>

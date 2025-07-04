@@ -29,14 +29,14 @@ const OtpVerification = ({ funcs, elements }) => {
             setEmailerr("Email cannot be empty");
             setTimeout(() => {
                 setEmailerr("");
-            }, 3000);
+            }, 1500);
             return;
         }
         if (!validator.isEmail(email.current)) {
             setEmailerr("Enter a valid Email");
             setTimeout(() => {
                 setEmailerr("");
-            }, 3000);
+            }, 1500);
             return;
         };
         await axios.post(`${api}/find-user`, { Email: email.current }).then(async (res) => {
@@ -47,7 +47,7 @@ const OtpVerification = ({ funcs, elements }) => {
             setEmailerr(err.response.data.message);
             setTimeout(() => {
                 setEmailerr("");
-            }, 3000);
+            }, 1500);
             console.log(err);
         })
     }
@@ -59,7 +59,7 @@ const OtpVerification = ({ funcs, elements }) => {
             setTimeout(() => {
                 setloading(false);
                 navigate("/home", { replace: true });
-            }, 3000);
+            }, 1500);
 
             localStorage.setItem("email", email.current);
             await axios.post(`/${api}/give-user`, { Email: email.current }, {
@@ -82,7 +82,7 @@ const OtpVerification = ({ funcs, elements }) => {
             setType("error");
             setTimeout(() => {
                 setToast("");
-            }, 3000);
+            }, 1500);
         }
     }
     const handleChange = (e, index) => {

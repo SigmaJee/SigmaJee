@@ -32,14 +32,14 @@ const Signup = ({ funcs, elements }) => {
             setEmailerr("Email cannot be empty");
             setTimeout(() => {
                 setEmailerr("");
-            }, 3000);
+            }, 1500);
             return;
         }
         if (!validator.isEmail(email)) {
             setEmailerr("Enter a valid Email");
             setTimeout(() => {
                 setEmailerr("");
-            }, 3000);
+            }, 1500);
             return;
         }
         await axios.post(`${api}/signup`, { Email: email }).then(async (res) => {
@@ -51,7 +51,7 @@ const Signup = ({ funcs, elements }) => {
             setEmailerr(err.response.data.message)
             setTimeout(() => {
                 setEmailerr("");
-            }, 3000);
+            }, 1500);
         })
     }
     const otpRef = useRef([]);
@@ -72,7 +72,7 @@ const Signup = ({ funcs, elements }) => {
             setTimeout(() => {
                 setloading(false);
                 navigate("/signup-form", { replace: true });
-            }, 3000);
+            }, 1500);
              
         }
         else {
@@ -80,7 +80,7 @@ const Signup = ({ funcs, elements }) => {
             setType("error");
             setTimeout(() => {
                 setToast("");
-            }, 3000);
+            }, 1500);
         }
 
     }

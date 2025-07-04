@@ -19,7 +19,7 @@ const SignupPage = ({ elements }) => {
         if (Object.keys(errors).length > 0) {
             const timer = setTimeout(() => {
                 clearErrors();
-            }, 3000);
+            }, 1500);
             return () => clearTimeout(timer);
         }
     }, [errors, clearErrors]);
@@ -47,9 +47,9 @@ const SignupPage = ({ elements }) => {
                 localStorage.setItem("userId",res.data.userId);
                 setTimeout(() => {
                     navigate("/home", { replace: true });
-                }, 3000);
+                }, 1500);
                 
-            }, 3000);
+            }, 1500);
             await axios.post(`${api}/give-user`,{Email:email},{
             withCredentials:true
         }).then((res)=>{

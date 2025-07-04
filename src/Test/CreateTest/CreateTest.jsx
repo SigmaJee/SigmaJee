@@ -140,7 +140,7 @@ const CreateTest = ({ elements }) => {
             setTimeout(() => {
                 setloading(false);
                 navigate("/test-page");
-            }, 3000);
+            }, 1500);
 
         } catch (error) {
             console.log("Failed to Create Tp");

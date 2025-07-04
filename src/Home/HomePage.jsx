@@ -112,7 +112,7 @@ const HomePage = ({elements}) => {
             setTimeout(() => {
               setloading(false);
               navigate("/test-page");
-            }, 3000);
+            }, 1500);
             
           }}>Get Started</button>
         </div>

@@ -66,7 +66,7 @@ const Login = ({ funcs, elements }) => {
             setTimeout(() => {
                 setloading(false);
                 navigate("/home", { replace: true });
-            }, 3000);
+            }, 1500);
              localStorage.setItem("email",email.current);
             
         }).catch((err) => {
