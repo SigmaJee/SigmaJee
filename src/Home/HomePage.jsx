@@ -2,13 +2,21 @@ import React, { useEffect, useState } from 'react';
 import './Home.css';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from './HmSidebar';
-const HomePage = ({elements}) => {
+const HomePage = ({ elements }) => {
   const navigate = useNavigate();
   const [show, setshow] = useState(false)
-  const {setloading}=elements;
+  const { setloading } = elements;
+  useEffect(() => {
+    setloading(true);
+    setTimeout(() => {
+      setloading(false);
+
+    }, 1000);
+  },[])
+
   return (
     <div className="hm-pg">
-      {show && <Sidebar el={{setshow}} />}
+      {show && <Sidebar el={{ setshow }} />}
       {/* NAVBAR */}
       <div className="hm-navbar">
         <div className="hm-logo">
@@ -16,9 +24,9 @@ const HomePage = ({elements}) => {
         </div>
         <div className="hm-nav-btns">
           <div className="hm-desk-navbar-buttons">
-            <button className="hm-desk-nav-btn"onClick={() => {
-                setshow(prev => !prev)
-              }}>Home</button>
+            <button className="hm-desk-nav-btn" onClick={() => {
+              setshow(prev => !prev)
+            }}>Home</button>
             <button className="hm-desk-nav-btn" onClick={() => navigate("/test-page")}>Test Papers</button>
             <button className="hm-desk-nav-btn">Live Lectures</button>
             <button className="hm-desk-nav-btn">Study Material</button>
@@ -28,11 +36,11 @@ const HomePage = ({elements}) => {
 
           <div className="hm-mobile-icons">
             <div onClick={() => {
-               console.log("Clicked"); // ✅ test
-                setshow(prev => !prev)
-              }}
-             >
-              <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="Profile Icon"    className="hm-profile-icon" />
+              console.log("Clicked"); // ✅ test
+              setshow(prev => !prev)
+            }}
+            >
+              <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="Profile Icon" className="hm-profile-icon" />
             </div>
 
             <img src="https://cdn-icons-png.flaticon.com/512/56/56763.png" alt="Hamburger" onClick={() => {
@@ -108,12 +116,9 @@ const HomePage = ({elements}) => {
             Get full-length practice papers, mock tests and timed challenges curated by experts.
           </p>
           <button className="hm-cta-btn" onClick={() => {
-            setloading(true);
-            setTimeout(() => {
-              setloading(false);
-              navigate("/test-page");
-            }, 1500);
-            
+
+            navigate("/test-page");
+
           }}>Get Started</button>
         </div>
         <div className="hm-tp-hero-right">

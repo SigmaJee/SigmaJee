@@ -29,17 +29,17 @@ const OtpVerification = ({ funcs, elements }) => {
             setEmailerr("Email cannot be empty");
             setTimeout(() => {
                 setEmailerr("");
-            }, 1500);
+            }, 1000);
             return;
         }
         if (!validator.isEmail(email.current)) {
             setEmailerr("Enter a valid Email");
             setTimeout(() => {
                 setEmailerr("");
-            }, 1500);
+            }, 1000);
             return;
         };
-        await axios.post(`${api}/find-user`, { Email: email.current }).then(async (res) => {
+        await axios.post(`api/user/find-user`, { Email: email.current }).then(async (res) => {
             setshowOtp(true);
             setdisable(true);
             await sendOtp();
@@ -47,7 +47,7 @@ const OtpVerification = ({ funcs, elements }) => {
             setEmailerr(err.response.data.message);
             setTimeout(() => {
                 setEmailerr("");
-            }, 1500);
+            }, 1000);
             console.log(err);
         })
     }
@@ -59,10 +59,10 @@ const OtpVerification = ({ funcs, elements }) => {
             setTimeout(() => {
                 setloading(false);
                 navigate("/home", { replace: true });
-            }, 1500);
+            }, 1000);
 
             localStorage.setItem("email", email.current);
-            await axios.post(`/${api}/give-user`, { Email: email.current }, {
+            await axios.post(`/api/user/give-user`, { Email: email.current }, {
                 withCredentials: true
             })
                 .then((res) => {
@@ -82,7 +82,7 @@ const OtpVerification = ({ funcs, elements }) => {
             setType("error");
             setTimeout(() => {
                 setToast("");
-            }, 1500);
+            }, 1000);
         }
     }
     const handleChange = (e, index) => {
@@ -118,7 +118,7 @@ const OtpVerification = ({ funcs, elements }) => {
             })
 
         }, 1000);
-        await axios.post(`${api}/send-otp`, { Email: email.current }).then((res) => {
+        await axios.post(`api/user/send-otp`, { Email: email.current }).then((res) => {
             console.log("Otp sent");
             actOtp.current = String(res.data.otp);
         }).catch(err => {

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './CreatedTests.css';
 import axios from 'axios';
 import Cookies from "js-cookie"
-const CreatedTests = () => {
-   const api=import.meta.env.VITE_API;
+const CreatedTests = ({elements}) => {
+    const api = import.meta.env.VITE_API;
     const [CreatedTests, setCreatedTests] = useState(() => {
         const stored = localStorage.getItem("created");
         try {
@@ -11,15 +11,22 @@ const CreatedTests = () => {
         } catch {
             return [];
         }
-    });
-
+    },[]);
+    const {setloading}=elements;
     useEffect(() => {
-        
+        setloading(true);
+        setTimeout(() => {
+            setloading(false);
+
+        }, 1000);
+    })
+    useEffect(() => {
+
         const FetchData = async () => {
-            const UserId=localStorage.getItem("userId");
+            const UserId = localStorage.getItem("userId");
             console.log(UserId);
-            
-            await axios.post(`${api}/get-created-test`,{UserId}).then((res) => {
+
+            await axios.post(`api/user/get-created-test`, { UserId }).then((res) => {
                 setCreatedTests(res.data.created);
             }).catch((err) => {
                 console.log(err);
@@ -32,7 +39,7 @@ const CreatedTests = () => {
     }, [CreatedTests]);
 
     const downloadPDF = async (paperData) => {
-        const response = await axios.post(`${api}/get-pdf`, { paperData }, {
+        const response = await axios.post(`api/user/get-pdf`, { paperData }, {
             responseType: "blob",
         });
 
@@ -67,7 +74,7 @@ const CreatedTests = () => {
                     <div className="ctd-test-block" key={id}>
 
                         {/* ✅ LEFT CARD */}
-                        <div className="ctd-test-card">
+                        <div className="ctd-test-card " >
                             <div className="ctd-left-info">
                                 <h3>{test.Title}</h3>
                                 <div>Duration: {test.Duration}</div>
@@ -75,8 +82,8 @@ const CreatedTests = () => {
                                 <div className="ctd-nav-btn" onClick={async () => {
                                     const url = `https://sigmajeeoff.netlify.app/test-screen?test-id=${test._id}`;
                                     const message = `Someone has set a test paper for you on SigmaJEE.\nClick the link to attempt it:\n${url}`;
-                                    const encoded=encodeURIComponent(message);
-                                    window.open(`https://wa.me?text=${encoded}`,"_blank");
+                                    const encoded = encodeURIComponent(message);
+                                    window.open(`https://wa.me?text=${encoded}`, "_blank");
                                 }}
                                 >Share</div>
                             </div>

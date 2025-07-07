@@ -18,10 +18,13 @@ import CreatedTests from "./Test/CreatedTest/CreatedTests.jsx";
 function App() {
    const location = useLocation(); 
   useEffect(() => {
-    AOS.init({
+    setTimeout(() => {
+       AOS.init({
       duration: 800,
       once: false,
     });
+    }, 1000);
+   
   }, []);
 
   useEffect(() => {

@@ -32,17 +32,17 @@ const Signup = ({ funcs, elements }) => {
             setEmailerr("Email cannot be empty");
             setTimeout(() => {
                 setEmailerr("");
-            }, 1500);
+            }, 1000);
             return;
         }
         if (!validator.isEmail(email)) {
             setEmailerr("Enter a valid Email");
             setTimeout(() => {
                 setEmailerr("");
-            }, 1500);
+            }, 1000);
             return;
         }
-        await axios.post(`${api}/signup`, { Email: email }).then(async (res) => {
+        await axios.post(`api/user/signup`, { Email: email }).then(async (res) => {
             setshowOtp(true);
             setDisable(true);
             await SendOtp();
@@ -51,7 +51,7 @@ const Signup = ({ funcs, elements }) => {
             setEmailerr(err.response.data.message)
             setTimeout(() => {
                 setEmailerr("");
-            }, 1500);
+            }, 1000);
         })
     }
     const otpRef = useRef([]);
@@ -72,7 +72,7 @@ const Signup = ({ funcs, elements }) => {
             setTimeout(() => {
                 setloading(false);
                 navigate("/signup-form", { replace: true });
-            }, 1500);
+            }, 1000);
              
         }
         else {
@@ -80,7 +80,7 @@ const Signup = ({ funcs, elements }) => {
             setType("error");
             setTimeout(() => {
                 setToast("");
-            }, 1500);
+            }, 1000);
         }
 
     }
@@ -109,7 +109,7 @@ const Signup = ({ funcs, elements }) => {
                 return prev - 1;
             });
         }, 1000);
-        await axios.post(`${api}/send-otp`, { Email: email }).then((res) => {
+        await axios.post(`api/user/send-otp`, { Email: email }).then((res) => {
             console.log("Otp Sent ");
             actOtpRef.current = String(res.data.otp);
 

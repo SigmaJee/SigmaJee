@@ -1,6 +1,6 @@
 import React from "react";
 import "./TestPage.css";
-import { useState, useRef } from "react";
+import { useState, useRef,useEffect } from "react";
 import { useNavigate } from "react-router-dom"
 import RightSidebar from "../../Home/HmSidebar";
 import axios from "axios";
@@ -8,6 +8,13 @@ const TestPage = ({ elements }) => {
   const api = import.meta.env.VITE_API;
   const navigate = useNavigate();
   const { setloading } = elements;
+ useEffect(() => {
+    setloading(true);
+    setTimeout(() => {
+      setloading(false);
+
+    }, 1000);
+  },[])
   const [show, setshow] = useState(false);
   const [titleErr, setTitleErr] = useState("");
   const [SubjectErr, setSubjectErr] = useState("");
@@ -21,27 +28,24 @@ const TestPage = ({ elements }) => {
       setTitleErr("Title cannot be empty");
       setTimeout(() => {
         setTitleErr("");
-      }, 1500);
+      }, 1000);
       return;
     }
     if (subject === "") {
       setSubjectErr("Subject cannot be empty");
       setTimeout(() => {
         setSubjectErr("");
-      }, 1500);
+      }, 1000);
       return;
     }
-    await axios.post(`${api}/create-test`, { Title: title, Subject: subject }, {
+    await axios.post(`api/user/create-test`, { Title: title, Subject: subject }, {
       withCredentials: true
     }).then((res) => {
       console.log("Test Created Successfully");
       console.log(res.data.id);
       localStorage.setItem("testId", res.data.id);
-      setloading(true);
-      setTimeout(() => {
-        setloading(false);
-        navigate("/test-create")
-      }, 1500);
+      
+        navigate("/test-create");
 
     }).catch((err) => {
       console.log("Failed to create Test ");
@@ -110,7 +114,7 @@ const TestPage = ({ elements }) => {
       <div className="tp-upper-section">
         <div className="tp-left-section">
           {/* Explore Card */}
-          <div className="tp-test-card">
+          <div className="tp-test-card" data-aos="fade-down">
             <h2>Explore Tests<br /> by Experts</h2>
             <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Explore" className="tp-card-image" />
             <div className="tp-card-btns">
@@ -119,17 +123,13 @@ const TestPage = ({ elements }) => {
           </div>
 
           {/* Create Card */}
-          <div className="tp-test-card">
+          <div className="tp-test-card" data-aos="fade-down">
             <h1>Create & Share Tests</h1>
             <img src="https://cdn-icons-png.flaticon.com/512/1256/1256650.png" alt="Create" className="tp-card-image" />
             <div className="tp-card-btns">
               <button onClick={() => { setshowbox(true) }}>Create Test</button>
               <button onClick={() => {
-                setloading(true);
-                setTimeout(() => {
-                  setloading(false);
-                  navigate("/test-created")
-                }, 1500);
+                navigate("/test-created")
               }}>View Created</button>
             </div>
           </div>
@@ -154,7 +154,7 @@ const TestPage = ({ elements }) => {
         <h2>Previous Year Question Papers</h2>
         <div className="tp-paper-cards">
           {[...Array(9)].map((_, i) => (
-            <div className="tp-paper-card" key={i}>
+            <div className="tp-paper-card" key={i} data-aos="fade-up">
               <h4>JEE Main {2023 - i}</h4>
               <div className="tp-actions">
                 <button className="tp-attempt-btn">Attempt</button>

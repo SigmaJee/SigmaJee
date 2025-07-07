@@ -35,7 +35,7 @@ const Hero = ({ elements, funcs }) => {
         setTimeout(() => {
           setloading(false);
           navigate("/signup-form", { replace: true });
-        }, 1500);
+        }, 1000);
          
     
       return;
@@ -47,7 +47,7 @@ const Hero = ({ elements, funcs }) => {
 
       setTimeout(() => {
         setToast("");
-      }, 1500);
+      }, 1000);
       return;
     }
   }
@@ -56,18 +56,18 @@ const Hero = ({ elements, funcs }) => {
       setEmailerr("Email cannot be empty");
       setTimeout(() => {
         setEmailerr("");
-      }, 1500);
+      }, 1000);
       return;
     }
     if (!validator.isEmail(email)) {
       setEmailerr("Enter a valid Email");
       setTimeout(() => {
         setEmailerr("");
-      }, 1500);
+      }, 1000);
       return;
     }
 
-    await axios.post(`${api}/signup`, { Email: email }).then(async (res) => {
+    await axios.post(`api/user/signup`, { Email: email }).then(async (res) => {
       ShowBox(true);
       setDisable(true);
       await Sendotp();
@@ -77,7 +77,7 @@ const Hero = ({ elements, funcs }) => {
       setEmailerr(err.response.data.message + " Go to Login");
       setTimeout(() => {
         setEmailerr("");
-      }, 1500);
+      }, 1000);
 
     })
   }
@@ -95,7 +95,7 @@ const Hero = ({ elements, funcs }) => {
       })
 
     }, 1000);
-    await axios.post(`${api}/send-otp`, { Email: email.current }).then((res) => {
+    await axios.post(`api/user/send-otp`, { Email: email.current }).then((res) => {
       console.log("otp sent");
       actOtp.current = String(res.data.otp);
     }).catch(err => {

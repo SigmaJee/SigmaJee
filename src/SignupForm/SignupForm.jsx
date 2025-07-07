@@ -8,9 +8,17 @@ import axios from 'axios';
 import { useAuth } from '../LoginContext/loginContext';
 import { SignupAuth } from '../components/CanGoSignup/canSignupContext';
 const SignupPage = ({ elements }) => {
+
     const navigate = useNavigate();
     const passRef = useRef("");
     const { setloading } = elements;
+    useEffect(() => {
+       setloading(true);
+       setTimeout(() => {
+         setloading(false);
+   
+       }, 1000);
+     },[])
     const { setUser } = useAuth();
     const [show, setshow] = useState(false);
     const { register, handleSubmit, formState: { errors }, reset, clearErrors } = useForm();
@@ -19,7 +27,7 @@ const SignupPage = ({ elements }) => {
         if (Object.keys(errors).length > 0) {
             const timer = setTimeout(() => {
                 clearErrors();
-            }, 1500);
+            }, 1000);
             return () => clearTimeout(timer);
         }
     }, [errors, clearErrors]);
@@ -38,26 +46,23 @@ const SignupPage = ({ elements }) => {
     const onSubmit = async (data) => {
         const email = localStorage.getItem("email");
 
-        await axios.post(`${api}/create-user`, { Email: email, Name: data.Name, Class: data.Class, Password: data.Pass }).then(async (res) => {
-            setloading(true);
-            setTimeout(() => {
-                setloading(false);
-                reset();
-                setUser(true);
-                localStorage.setItem("userId",res.data.userId);
-                setTimeout(() => {
-                    navigate("/home", { replace: true });
-                }, 1500);
-                
-            }, 1500);
-            await axios.post(`${api}/give-user`,{Email:email},{
-            withCredentials:true
-        }).then((res)=>{
+        await axios.post(`api/user/create-user`, { Email: email, Name: data.Name, Class: data.Class, Password: data.Pass }).then(async (res) => {
 
-            }).catch(err=>{
+            reset();
+            setUser(true);
+            localStorage.setItem("userId", res.data.userId);
+            setTimeout(() => {
+                navigate("/home", { replace: true });
+            }, 1000);
+
+            await axios.post(`api/user/give-user`, { Email: email }, {
+                withCredentials: true
+            }).then((res) => {
+
+            }).catch(err => {
                 console.log(err);
                 console.log("Err in getting user");
-                
+
             })
 
         }).catch((Err) => {
@@ -66,7 +71,7 @@ const SignupPage = ({ elements }) => {
     }
     const onBack = async () => {
         const email = localStorage.getItem("email");
-        await axios.post(`${api}/delete-user`, { Email: email }).then((res) => {
+        await axios.post(`api/user/delete-user`, { Email: email }).then((res) => {
             localStorage.removeItem("email");
             setCanSignup(false);
             setUser(false);

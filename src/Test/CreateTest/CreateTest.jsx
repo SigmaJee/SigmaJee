@@ -1,10 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './CreateTest.css';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { replace, useNavigate } from 'react-router-dom';
 import Cookies from "js-cookie"
+import { Replace } from 'lucide-react';
 const CreateTest = ({ elements }) => {
     const { setloading } = elements;
+     useEffect(() => {
+        setloading(true);
+        setTimeout(() => {
+          setloading(false);
+    
+        }, 1000);
+      },[])
     const navigate = useNavigate();
     const api = import.meta.env.VITE_API;
     const safeJSONParse = (key, fallback) => {
@@ -134,13 +142,15 @@ const CreateTest = ({ elements }) => {
         const id = localStorage.getItem("testId");
         console.log(id);
         try {
-            await axios.post(`${api}/edit-paper`, { Statements, Saved, Options, Answers, duration, userId, id });
+            await axios.post(`api/user/edit-paper`, { Statements, Saved, Options, Answers, duration, userId, id });
             console.log("Tp Created ");
-            setloading(true);
-            setTimeout(() => {
-                setloading(false);
-                navigate("/test-page");
-            }, 1500);
+            const email=localStorage.getItem("email");
+            const userid=localStorage.getItem("userId");
+            localStorage.clear();
+            localStorage.setItem("userId",userid);
+            localStorage.setItem("email",email);
+
+            navigate("/test-page",{replace:true});
 
         } catch (error) {
             console.log("Failed to Create Tp");
