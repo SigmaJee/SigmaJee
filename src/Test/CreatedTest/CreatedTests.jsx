@@ -26,7 +26,7 @@ const CreatedTests = ({elements}) => {
             const UserId = localStorage.getItem("userId");
             console.log(UserId);
 
-            await axios.post(`api/user/get-created-test`, { UserId }).then((res) => {
+            await axios.post(`${api}/get-created-test`, { UserId }).then((res) => {
                 setCreatedTests(res.data.created);
             }).catch((err) => {
                 console.log(err);
@@ -39,7 +39,7 @@ const CreatedTests = ({elements}) => {
     }, [CreatedTests]);
 
     const downloadPDF = async (paperData) => {
-        const response = await axios.post(`api/user/get-pdf`, { paperData }, {
+        const response = await axios.post(`${api}/get-pdf`, { paperData }, {
             responseType: "blob",
         });
 

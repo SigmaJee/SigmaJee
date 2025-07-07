@@ -142,7 +142,7 @@ const CreateTest = ({ elements }) => {
         const id = localStorage.getItem("testId");
         console.log(id);
         try {
-            await axios.post(`api/user/edit-paper`, { Statements, Saved, Options, Answers, duration, userId, id });
+            await axios.post(`${api}/edit-paper`, { Statements, Saved, Options, Answers, duration, userId, id });
             console.log("Tp Created ");
             const email=localStorage.getItem("email");
             const userid=localStorage.getItem("userId");

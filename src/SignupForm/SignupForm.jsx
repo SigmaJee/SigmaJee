@@ -46,7 +46,7 @@ const SignupPage = ({ elements }) => {
     const onSubmit = async (data) => {
         const email = localStorage.getItem("email");
 
-        await axios.post(`api/user/create-user`, { Email: email, Name: data.Name, Class: data.Class, Password: data.Pass }).then(async (res) => {
+        await axios.post(`${api}/create-user`, { Email: email, Name: data.Name, Class: data.Class, Password: data.Pass }).then(async (res) => {
 
             reset();
             setUser(true);
@@ -55,7 +55,7 @@ const SignupPage = ({ elements }) => {
                 navigate("/home", { replace: true });
             }, 1000);
 
-            await axios.post(`api/user/give-user`, { Email: email }, {
+            await axios.post(`${api}/give-user`, { Email: email }, {
                 withCredentials: true
             }).then((res) => {
 
@@ -71,7 +71,7 @@ const SignupPage = ({ elements }) => {
     }
     const onBack = async () => {
         const email = localStorage.getItem("email");
-        await axios.post(`api/user/delete-user`, { Email: email }).then((res) => {
+        await axios.post(`${api}/delete-user`, { Email: email }).then((res) => {
             localStorage.removeItem("email");
             setCanSignup(false);
             setUser(false);
